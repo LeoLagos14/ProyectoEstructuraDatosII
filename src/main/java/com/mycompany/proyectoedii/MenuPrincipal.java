@@ -73,6 +73,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Tres = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         Cuatro = new javax.swing.JMenuItem();
+        jd_crearCampos = new javax.swing.JDialog();
+        jp_agregarCampo = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jd_listarCampos = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jPArchivos = new javax.swing.JPanel();
@@ -132,6 +147,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         Uno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UnoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 UnoMouseEntered(evt);
             }
@@ -145,7 +163,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pm_Campos.add(jSeparator4);
 
         Dos.setText("Listar Campos");
+        Dos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DosMouseClicked(evt);
+            }
+        });
         pm_Campos.add(Dos);
+
+        jSeparator5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSeparator5MouseClicked(evt);
+            }
+        });
         pm_Campos.add(jSeparator5);
 
         Tres.setText("Modificar Campos");
@@ -154,6 +183,128 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         Cuatro.setText("Borrar campos");
         pm_Campos.add(Cuatro);
+
+        jp_agregarCampo.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel1.setText("Nombre del campo");
+
+        jLabel2.setText("Longitud");
+
+        jLabel3.setText("Tipo del campo");
+
+        jLabel4.setText("LLave primaria");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("CREAR CAMPOS");
+
+        javax.swing.GroupLayout jp_agregarCampoLayout = new javax.swing.GroupLayout(jp_agregarCampo);
+        jp_agregarCampo.setLayout(jp_agregarCampoLayout);
+        jp_agregarCampoLayout.setHorizontalGroup(
+            jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_agregarCampoLayout.createSequentialGroup()
+                .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_agregarCampoLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jp_agregarCampoLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(121, Short.MAX_VALUE))
+        );
+        jp_agregarCampoLayout.setVerticalGroup(
+            jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_agregarCampoLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(127, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jd_crearCamposLayout = new javax.swing.GroupLayout(jd_crearCampos.getContentPane());
+        jd_crearCampos.getContentPane().setLayout(jd_crearCamposLayout);
+        jd_crearCamposLayout.setHorizontalGroup(
+            jd_crearCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_crearCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jd_crearCamposLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jp_agregarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jd_crearCamposLayout.setVerticalGroup(
+            jd_crearCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_crearCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jd_crearCamposLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jp_agregarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("LISTAR CAMPOS");
+
+        jScrollPane1.setViewportView(jList1);
+
+        javax.swing.GroupLayout jd_listarCamposLayout = new javax.swing.GroupLayout(jd_listarCampos.getContentPane());
+        jd_listarCampos.getContentPane().setLayout(jd_listarCamposLayout);
+        jd_listarCamposLayout.setHorizontalGroup(
+            jd_listarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_listarCamposLayout.createSequentialGroup()
+                .addGroup(jd_listarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_listarCamposLayout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_listarCamposLayout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(160, Short.MAX_VALUE))
+        );
+        jd_listarCamposLayout.setVerticalGroup(
+            jd_listarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_listarCamposLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -468,6 +619,31 @@ public class MenuPrincipal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_UnoMouseEntered
 
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void UnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UnoMouseClicked
+        // TODO add your handling code here:
+        jd_crearCampos.pack();
+        jd_crearCampos.setLocationRelativeTo(this);
+        jd_crearCampos.setModal(true);
+        jd_crearCampos.setVisible(true);
+    }//GEN-LAST:event_UnoMouseClicked
+
+    private void jSeparator5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSeparator5MouseClicked
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_jSeparator5MouseClicked
+
+    private void DosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DosMouseClicked
+        // TODO add your handling code here:
+          jd_listarCampos.pack();
+        jd_listarCampos.setLocationRelativeTo(this);
+        jd_listarCampos.setModal(true);
+        jd_listarCampos.setVisible(true);
+    }//GEN-LAST:event_DosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -509,6 +685,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem Dos;
     private javax.swing.JMenuItem Tres;
     private javax.swing.JMenuItem Uno;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLArchivos;
     private javax.swing.JLabel jLArchivosNombre;
     private javax.swing.JLabel jLCampos;
@@ -516,6 +693,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLEstandarizacion;
     private javax.swing.JLabel jLIndices;
     private javax.swing.JLabel jLRegistros;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JMenuItem jMAbrirArchivo;
     private javax.swing.JMenuItem jMGuardarArchivo;
     private javax.swing.JMenuItem jMNuevoArchivo;
@@ -531,12 +715,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenuArchivos;
     private javax.swing.JPanel jPrincipal;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JDialog jd_crearCampos;
+    private javax.swing.JDialog jd_listarCampos;
+    private javax.swing.JPanel jp_agregarCampo;
     private javax.swing.JPopupMenu pm_Campos;
     // End of variables declaration//GEN-END:variables
 
