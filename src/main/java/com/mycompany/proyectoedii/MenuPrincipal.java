@@ -12,14 +12,20 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -59,6 +65,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMGuardarArchivo = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMSalirArchivo = new javax.swing.JMenuItem();
+        pm_Campos = new javax.swing.JPopupMenu();
+        Uno = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        Dos = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        Tres = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        Cuatro = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jPArchivos = new javax.swing.JPanel();
@@ -111,11 +125,46 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPopupMenuArchivos.add(jMSalirArchivo);
 
+        Uno.setText("Crear Campos");
+        Uno.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                UnoMouseMoved(evt);
+            }
+        });
+        Uno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                UnoMouseEntered(evt);
+            }
+        });
+        Uno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UnoActionPerformed(evt);
+            }
+        });
+        pm_Campos.add(Uno);
+        pm_Campos.add(jSeparator4);
+
+        Dos.setText("Listar Campos");
+        pm_Campos.add(Dos);
+        pm_Campos.add(jSeparator5);
+
+        Tres.setText("Modificar Campos");
+        pm_Campos.add(Tres);
+        pm_Campos.add(jSeparator6);
+
+        Cuatro.setText("Borrar campos");
+        pm_Campos.add(Cuatro);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setForeground(new java.awt.Color(0, 153, 153));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPrincipal.setBackground(new java.awt.Color(0, 102, 102));
@@ -183,6 +232,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLCampos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLCampos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLCampos.setText("CAMPOS");
+        jLCampos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLCamposMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPCLayout = new javax.swing.GroupLayout(jPC);
         jPC.setLayout(jPCLayout);
@@ -213,7 +267,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jPRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPRLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addComponent(jLRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPRLayout.setVerticalGroup(
@@ -387,6 +441,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMAbrirArchivoMouseClicked
 
+    private void jLCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLCamposMouseClicked
+        // TODO add your handling code here:
+        pm_Campos.setVisible(true);
+        pm_Campos.setLocation(380,450);
+    }//GEN-LAST:event_jLCamposMouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        pm_Campos.setVisible(false);
+        jPopupMenuArchivos.setVisible(false);
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void UnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnoActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_UnoActionPerformed
+
+    private void UnoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UnoMouseMoved
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_UnoMouseMoved
+
+    private void UnoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UnoMouseEntered
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_UnoMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -419,10 +500,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             public void run() {
                 new MenuPrincipal().setVisible(true);
             }
+            
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Cuatro;
+    private javax.swing.JMenuItem Dos;
+    private javax.swing.JMenuItem Tres;
+    private javax.swing.JMenuItem Uno;
     private javax.swing.JLabel jLArchivos;
     private javax.swing.JLabel jLArchivosNombre;
     private javax.swing.JLabel jLCampos;
@@ -448,10 +534,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JPopupMenu pm_Campos;
     // End of variables declaration//GEN-END:variables
 
     static Archivos archivo_temp;
-    
+    LinkedList<Nodo>listaEnlazada= new LinkedList<>();
     
     
 private void nuevo_archivo() {
@@ -475,4 +565,34 @@ private void nuevo_archivo() {
         archivo_temp = null;
         
     }
+public void agregarElementoAvailList(Nodo nuevoNodo){
+    listaEnlazada.addFirst(nuevoNodo);
 }
+public void guardarAvailist(LinkedList<Nodo> lista, String archivo) {
+        try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(archivo))) {
+            for (Nodo nodo : lista) {
+                stream.writeObject(nodo);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+}
+public LinkedList<Nodo> leerAvaiList(String archivo) {
+        LinkedList<Nodo> lista = new LinkedList<>();
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
+            while (true) {
+                try {
+                    Nodo nodo = (Nodo) in.readObject();
+                    lista.add(nodo);
+                } catch (EOFException e) {
+                    break; // Fin del archivo
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return lista;
+}
+}
+
+
