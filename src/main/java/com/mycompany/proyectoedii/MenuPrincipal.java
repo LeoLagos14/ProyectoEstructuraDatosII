@@ -759,7 +759,7 @@ private void nuevo_archivo() {
 public void agregarElementoAvailList(Nodo nuevoNodo){
     listaEnlazada.addFirst(nuevoNodo);
 }
-public void guardarAvailist(LinkedList<Nodo> lista, String archivo) {
+public void guardarAvailList(LinkedList<Nodo> lista, String archivo) {
         try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(archivo))) {
             for (Nodo nodo : lista) {
                 stream.writeObject(nodo);
@@ -768,7 +768,7 @@ public void guardarAvailist(LinkedList<Nodo> lista, String archivo) {
             e.printStackTrace();
         }
 }
-public LinkedList<Nodo> leerAvaiList(String archivo) {
+public LinkedList<Nodo> leerAvailList(String archivo) {
         LinkedList<Nodo> lista = new LinkedList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
             while (true) {
@@ -783,6 +783,18 @@ public LinkedList<Nodo> leerAvaiList(String archivo) {
             e.printStackTrace();
         }
         return lista;
+        
+}
+
+private void guardarMetadata() {
+    // Asumimos que 'archivo_temp' es un objeto de la clase Archivos con la ruta y nombre del archivo
+    if (archivo_temp != null) {
+        // Crea el Metadata con el autor y el availList
+        Metadata metadata = new Metadata("Autor Ejemplo", listaEnlazada);  // listaEnlazada es el availList
+
+        // Guardar la metadata en un archivo
+        metadata.guardarMetadata(archivo_temp.getPath() + ".meta");  // Guarda en un archivo con extensión .meta
+    }
 }
 }
 
