@@ -79,11 +79,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        tf_nombreCrear = new javax.swing.JTextField();
+        tf_tamanio = new javax.swing.JTextField();
+        tf_tipo = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        jb_crearCampo = new javax.swing.JButton();
         jd_listarCampos = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -211,9 +212,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel4.setText("LLave primaria");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        tf_tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                tf_tipoActionPerformed(evt);
             }
         });
 
@@ -224,6 +225,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("CREAR CAMPOS");
 
+        jb_crearCampo.setText("CREAR");
+        jb_crearCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_crearCampoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jp_agregarCampoLayout = new javax.swing.GroupLayout(jp_agregarCampo);
         jp_agregarCampo.setLayout(jp_agregarCampoLayout);
         jp_agregarCampoLayout.setHorizontalGroup(
@@ -231,21 +239,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(jp_agregarCampoLayout.createSequentialGroup()
                 .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jp_agregarCampoLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-                        .addGap(49, 49, 49)
-                        .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jp_agregarCampoLayout.createSequentialGroup()
                         .addGap(82, 82, 82)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jp_agregarCampoLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jb_crearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jp_agregarCampoLayout.createSequentialGroup()
+                                .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                                .addGap(49, 49, 49)
+                                .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_tamanio, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_nombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         jp_agregarCampoLayout.setVerticalGroup(
@@ -256,20 +267,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_nombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_tamanio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jb_crearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jd_crearCamposLayout = new javax.swing.GroupLayout(jd_crearCampos.getContentPane());
@@ -716,7 +729,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void UnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnoActionPerformed
         // TODO add your handling code here:
-       
+        pm_Campos.setVisible(false);
+        jd_crearCampos.pack();
+        jd_crearCampos.setLocationRelativeTo(this);
+        jd_crearCampos.setModal(true);
+        jd_crearCampos.setVisible(true);
     }//GEN-LAST:event_UnoActionPerformed
 
     private void UnoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UnoMouseMoved
@@ -729,9 +746,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_UnoMouseEntered
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void tf_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_tipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_tf_tipoActionPerformed
 
     private void UnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UnoMouseClicked
         // TODO add your handling code here:
@@ -857,20 +874,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         int selectedIndex = jListCampos.getSelectedIndex();
-        if (selectedIndex != -1) { // -1 significa que no hay selección
-            // Accede al modelo de la JList
+        if (selectedIndex != -1) {
             DefaultListModel modelo = (DefaultListModel) jListCampos.getModel();
-
-            // Elimina el elemento en el índice seleccionado
             modelo.remove(selectedIndex);
-
-            // Muestra un mensaje de confirmación
             JOptionPane.showMessageDialog(null, "Elemento eliminado correctamente");
         } else {
-            // Muestra un mensaje de error si no hay nada seleccionado
             JOptionPane.showMessageDialog(null, "Selecciona un elemento para eliminar");
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jb_crearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearCampoActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel modelo = (DefaultListModel) jListCampos.getModel();
+        Campos campo=new Campos();
+        campo.setNombre(tf_nombreCrear.getText());
+            modelo.addElement(campo);
+            JOptionPane.showMessageDialog(null, "Campo agregado correctamente");
+        
+    }//GEN-LAST:event_jb_crearCampoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -969,9 +990,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jb_crearCampo;
     private javax.swing.JButton jb_modificar;
     private javax.swing.JDialog jd_crearCampos;
     private javax.swing.JDialog jd_listarCampos;
@@ -979,6 +998,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu pm_Campos;
     private javax.swing.JPopupMenu pm_modificar;
     private javax.swing.JTextField tf_NombreCampo;
+    private javax.swing.JTextField tf_nombreCrear;
+    private javax.swing.JTextField tf_tamanio;
+    private javax.swing.JTextField tf_tipo;
     // End of variables declaration//GEN-END:variables
 
     static Archivos archivo_temp;
