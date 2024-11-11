@@ -26,6 +26,14 @@ public class Archivos {
         this.path = path;
         campos = new LinkedList<>();
     }
+    public void modificarCampo(Campos campoM, int campo_Seleccionado) {
+        if (campo_Seleccionado >= 0 && campo_Seleccionado < campos.size()) {
+            campos.set(campo_Seleccionado, campoM);
+            System.out.println("campo modificado en la posición " + campo_Seleccionado);
+        } else {
+            System.out.println("Índice fuera de rango. No se puede modificar.");
+        }
+    }
 
     public String getPath() {
         return path;
