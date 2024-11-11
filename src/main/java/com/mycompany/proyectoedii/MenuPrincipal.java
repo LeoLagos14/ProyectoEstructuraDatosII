@@ -91,6 +91,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jPArchivos = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListCampos = new javax.swing.JList<>();
         jPA = new javax.swing.JPanel();
         jLArchivos = new javax.swing.JLabel();
         jPC = new javax.swing.JPanel();
@@ -129,6 +131,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPopupMenuArchivos.add(jSeparator2);
 
         jMGuardarArchivo.setText("Guardar Archivo");
+        jMGuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMGuardarArchivoActionPerformed(evt);
+            }
+        });
         jPopupMenuArchivos.add(jMGuardarArchivo);
         jPopupMenuArchivos.add(jSeparator3);
 
@@ -323,15 +330,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPArchivos.setBackground(new java.awt.Color(0, 102, 102));
 
+        jListCampos.setBackground(new java.awt.Color(0, 102, 102));
+        jListCampos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jScrollPane2.setViewportView(jListCampos);
+
         javax.swing.GroupLayout jPArchivosLayout = new javax.swing.GroupLayout(jPArchivos);
         jPArchivos.setLayout(jPArchivosLayout);
         jPArchivosLayout.setHorizontalGroup(
             jPArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPArchivosLayout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
         jPArchivosLayout.setVerticalGroup(
             jPArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(jPArchivosLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPrincipalLayout = new javax.swing.GroupLayout(jPrincipal);
@@ -554,6 +571,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (archivo_temp == null) {
             jPopupMenuArchivos.setVisible(false);
+            pm_Campos.setVisible(false);
             nuevo_archivo();
             jLArchivosNombre.setText(archivo_temp.getNombreArchivo());
         }else{
@@ -565,11 +583,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         jPopupMenuArchivos.setVisible(true);
         jPopupMenuArchivos.setLocation(380, 323);
+        pm_Campos.setVisible(false);
     }//GEN-LAST:event_jLArchivosMouseClicked
 
     private void jMSalirArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMSalirArchivoMouseClicked
         // TODO add your handling code here:
         jPopupMenuArchivos.setVisible(false);
+        pm_Campos.setVisible(false);
           if (archivo_temp != null) {
             int opcion = JOptionPane.showConfirmDialog(jPrincipal, "SEGURO QUE QUIERE CERRAR EL ARCHIVO", "Cerrar Archivo", JOptionPane.YES_NO_OPTION);
             if (opcion == 0) {
@@ -584,8 +604,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMAbrirArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMAbrirArchivoMouseClicked
         // TODO add your handling code here:
         jPopupMenuArchivos.setVisible(false);
+        pm_Campos.setVisible(false);
         if (archivo_temp == null) {
-            
+            abrirArchivo();
         }else{
             JOptionPane.showMessageDialog(this, "Ya hay un archivo abierto.");
         }
@@ -595,7 +616,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jLCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLCamposMouseClicked
         // TODO add your handling code here:
         pm_Campos.setVisible(true);
-        pm_Campos.setLocation(380,450);
+        pm_Campos.setLocation(380,392);
     }//GEN-LAST:event_jLCamposMouseClicked
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -638,11 +659,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void DosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DosMouseClicked
         // TODO add your handling code here:
-          jd_listarCampos.pack();
-        jd_listarCampos.setLocationRelativeTo(this);
-        jd_listarCampos.setModal(true);
-        jd_listarCampos.setVisible(true);
+//        jd_listarCampos.pack();
+//        jd_listarCampos.setLocationRelativeTo(this);
+//        jd_listarCampos.setModal(true);
+//        jd_listarCampos.setVisible(true);
+         jPopupMenuArchivos.setVisible(false);
+         pm_Campos.setVisible(false);
+         DefaultListModel<String> LModel = new DefaultListModel<>();
+         String campo_tempo = "";
+         for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
+            campo_tempo = archivo_temp.getCampos().get(i).toString();
+            LModel.addElement(campo_tempo);
+        }
+         jListCampos.setModel(LModel);
+         jListCampos.setVisible(true);
+         
     }//GEN-LAST:event_DosMouseClicked
+
+    private void jMGuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMGuardarArchivoActionPerformed
+        // TODO add your handling code here:
+        jPopupMenuArchivos.setVisible(false);
+        pm_Campos.setVisible(false);
+         if (archivo_temp != null) {
+             guardararchivo();
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe haber un archivo abierto.");
+        }
+       
+    }//GEN-LAST:event_jMGuardarArchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -700,6 +744,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListCampos;
     private javax.swing.JMenuItem jMAbrirArchivo;
     private javax.swing.JMenuItem jMGuardarArchivo;
     private javax.swing.JMenuItem jMNuevoArchivo;
@@ -716,6 +761,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenuArchivos;
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
@@ -731,8 +777,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu pm_Campos;
     // End of variables declaration//GEN-END:variables
 
-    static Archivos archivo_temp;
-    LinkedList<Nodo>listaEnlazada= new LinkedList<>();
+    Archivos archivo_temp;
+    LinkedList<Campos> campos;
     
     
 private void nuevo_archivo() {
@@ -750,52 +796,126 @@ private void nuevo_archivo() {
             System.out.println("Se canceló la Operación.");
         }
 }
+private void abrirArchivo() {
+        File fichero = null;
+        try {
+            JFileChooser jfc = new JFileChooser("./");
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto (*.txt)", "txt");
+            jfc.setFileFilter(filtro);
+            int seleccion = jfc.showOpenDialog(this);
 
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                fichero = jfc.getSelectedFile();
+                //abre el archivo txt
+                abrirArchivoTXT(fichero);
 
-    private void cerrarArchivo() {
-        archivo_temp = null;
-        
+            } else if (seleccion == JFileChooser.CANCEL_OPTION) {
+                System.out.println("El usuario canceló la operación.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        jLArchivosNombre.setText(archivo_temp.getNombreArchivo());
     }
-public void agregarElementoAvailList(Nodo nuevoNodo){
-    listaEnlazada.addFirst(nuevoNodo);
-}
-public void guardarAvailList(LinkedList<Nodo> lista, String archivo) {
-        try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(archivo))) {
-            for (Nodo nodo : lista) {
-                stream.writeObject(nodo);
+private void abrirArchivoTXT(File fichero) {
+        try (FileReader fr = new FileReader(fichero); BufferedReader br = new BufferedReader(fr)) {
+            String linea = br.readLine();
+            String[] name = fichero.getName().split("\\.");
+            archivo_temp = new Archivos(name[0], fichero.getPath());
+            if (linea != null) {
+                String[] token = linea.split("\\|");
+                try {
+                    archivo_temp.setCamposOpen(token[2]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("NO hay campos");
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-}
-public LinkedList<Nodo> leerAvailList(String archivo) {
-        LinkedList<Nodo> lista = new LinkedList<>();
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
-            while (true) {
-                try {
-                    Nodo nodo = (Nodo) in.readObject();
-                    lista.add(nodo);
-                } catch (EOFException e) {
-                    break; // Fin del archivo
-                }
+        System.out.println("ABRIO EL ARCHIVO");
+    }
+public void guardararchivo() {
+        try {
+            guarArchivoTXT();
+
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
+    }
+private void guarArchivoTXT() throws IOException {
+        String[] lineas = new String[99999];
+  
+        //metadata
+        StringBuilder txt = new StringBuilder();
+        try {
+            txt.append(archivo_temp.getCamposClose());
+        } catch (Exception e) {
+            System.out.println("3");
+            //e.printStackTrace();
+        }
+        lineas[0] = txt.toString();
+        //fin metadata
+        try {
+            FileWriter fw = new FileWriter(archivo_temp.getPath());
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (int i = 0; i < archivo_temp.getCampos().size() + 1; i++) {
+                System.out.println(lineas[i]);
+                bw.write(lineas[i]);
+                bw.newLine();
             }
-        } catch (IOException | ClassNotFoundException e) {
+            bw.close();
+        } catch (Exception e) {
+            System.out.println("4");
             e.printStackTrace();
         }
-        return lista;
-        
-}
 
-private void guardarMetadata() {
-    // Asumimos que 'archivo_temp' es un objeto de la clase Archivos con la ruta y nombre del archivo
-    if (archivo_temp != null) {
-        // Crea el Metadata con el autor y el availList
-        Metadata metadata = new Metadata("Autor Ejemplo", listaEnlazada);  // listaEnlazada es el availList
-
-        // Guardar la metadata en un archivo
-        metadata.guardarMetadata(archivo_temp.getPath() + ".meta");  // Guarda en un archivo con extensión .meta
     }
-}
+    private void cerrarArchivo() {
+        archivo_temp = null;
+        
+    }
+//public void agregarElementoAvailList(Nodo nuevoNodo){
+//    listaEnlazada.addFirst(nuevoNodo);
+//}
+//public void guardarAvailList(LinkedList<Nodo> lista, String archivo) {
+//        try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(archivo))) {
+//            for (Nodo nodo : lista) {
+//                stream.writeObject(nodo);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//}
+//public LinkedList<Nodo> leerAvailList(String archivo) {
+//        LinkedList<Nodo> lista = new LinkedList<>();
+//        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
+//            while (true) {
+//                try {
+//                    Nodo nodo = (Nodo) in.readObject();
+//                    lista.add(nodo);
+//                } catch (EOFException e) {
+//                    break; // Fin del archivo
+//                }
+//            }
+//        } catch (IOException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        return lista;
+//        
+//}
+//
+//private void guardarMetadata() {
+//    // Asumimos que 'archivo_temp' es un objeto de la clase Archivos con la ruta y nombre del archivo
+//    if (archivo_temp != null) {
+//        // Crea el Metadata con el autor y el availList
+//        Metadata metadata = new Metadata("Autor Ejemplo", listaEnlazada);  // listaEnlazada es el availList
+//
+//        // Guardar la metadata en un archivo
+//        metadata.guardarMetadata(archivo_temp.getPath() + ".meta");  // Guarda en un archivo con extensión .meta
+//    }
+//}
 }
 
 
