@@ -90,9 +90,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         pm_modificar = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mi_modificarCampo = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mi_borrar = new javax.swing.JMenuItem();
         Modificar = new javax.swing.JDialog();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -185,6 +185,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DosMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DosMouseEntered(evt);
+            }
+        });
+        Dos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DosActionPerformed(evt);
+            }
         });
         pm_Campos.add(Dos);
 
@@ -196,6 +204,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pm_Campos.add(jSeparator5);
 
         Tres.setText("Modificar Campos");
+        Tres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TresActionPerformed(evt);
+            }
+        });
         pm_Campos.add(Tres);
         pm_Campos.add(jSeparator6);
 
@@ -257,7 +270,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                     .addComponent(tf_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tf_nombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         jp_agregarCampoLayout.setVerticalGroup(
             jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,27 +354,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(108, Short.MAX_VALUE))
         );
 
-        jMenuItem1.setText("Modificar");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        mi_modificarCampo.setText("Modificar");
+        mi_modificarCampo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseClicked(evt);
+                mi_modificarCampoMouseClicked(evt);
             }
         });
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mi_modificarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mi_modificarCampoActionPerformed(evt);
             }
         });
-        pm_modificar.add(jMenuItem1);
+        pm_modificar.add(mi_modificarCampo);
         pm_modificar.add(jSeparator7);
 
-        jMenuItem2.setText("Eliminar");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mi_borrar.setText("Eliminar");
+        mi_borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mi_borrarActionPerformed(evt);
             }
         });
-        pm_modificar.add(jMenuItem2);
+        pm_modificar.add(mi_borrar);
 
         jLabel7.setText("Nombre del campo");
 
@@ -729,6 +742,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void UnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnoActionPerformed
         // TODO add your handling code here:
+        
         pm_Campos.setVisible(false);
         jd_crearCampos.pack();
         jd_crearCampos.setLocationRelativeTo(this);
@@ -743,6 +757,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void UnoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UnoMouseEntered
         // TODO add your handling code here:
+        Uno.setBackground(Color.red);
        
     }//GEN-LAST:event_UnoMouseEntered
 
@@ -764,11 +779,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jSeparator5MouseClicked
 
     private void DosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DosMouseClicked
-        // TODO add your handling code here:
-//        jd_listarCampos.pack();
-//        jd_listarCampos.setLocationRelativeTo(this);
-//        jd_listarCampos.setModal(true);
-//        jd_listarCampos.setVisible(true);
+       
          jPopupMenuArchivos.setVisible(false);
          pm_Campos.setVisible(false);
          DefaultListModel<String> LModel = new DefaultListModel<>();
@@ -779,19 +790,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
          jListCampos.setModel(LModel);
          jListCampos.setVisible(true);
-         
-//       DefaultListModel<String> LModel1 = new DefaultListModel<>();
-//         String campo1_tempo = "";
-//         for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
-//            campo1_tempo = archivo_temp.getCampos().get(i).toString();
-//            LModel1.addElement(campo_tempo);
-//        }
-//         jList1.setModel(LModel);
-//         jList1.setVisible(true);  
-//       jd_listarCampos.pack();
-//       jd_listarCampos.setLocationRelativeTo(this);
-//       jd_listarCampos.setModal(true);
-//       jd_listarCampos.setVisible(true);
        
          
     }//GEN-LAST:event_DosMouseClicked
@@ -801,7 +799,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPopupMenuArchivos.setVisible(false);
         pm_Campos.setVisible(false);
          if (archivo_temp != null) {
-             guardararchivo();
+            // guardararchivo();
+            archivo_temp.escribirCamposEnArchivo(archivo_temp.getPath());
         }else{
             JOptionPane.showMessageDialog(this, "Debe haber un archivo abierto.");
         }
@@ -815,12 +814,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jList1MouseClicked
 
-    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+    private void mi_modificarCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mi_modificarCampoMouseClicked
         // TODO add your handling code here:
         
         
-        
-    }//GEN-LAST:event_jMenuItem1MouseClicked
+    }//GEN-LAST:event_mi_modificarCampoMouseClicked
 
     private void jListCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListCamposMouseClicked
         // TODO add your handling code here:
@@ -830,58 +828,53 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jListCamposMouseClicked
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mi_modificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_modificarCampoActionPerformed
         // TODO add your handling code here:
+        tf_NombreCampo.setText(archivo_temp.getCampos().get(jListCampos.getSelectedIndex()).getNombre());
+        //jSpinner1.setValue((int)archivo_temp.getCampos().get(jListCampos.getSelectedIndex()).getTam());
         Modificar.pack();
         Modificar.setLocationRelativeTo(this);
         Modificar.setModal(true);
         Modificar.setVisible(true);
-        Campos campoTemp = ((Campos) archivo_temp.getCampos().get(jListCampos.getSelectedIndex()));
-            Object num = campoTemp.getTam();
-            if (campoTemp.getTipo() instanceof String) {
-                SpinnerModel cadena = new SpinnerNumberModel((int) num, (int) num, 30, 1);
-                jSpinner1.setModel(cadena);
-            }
-            if (campoTemp.getTipo() instanceof Integer) {
-                SpinnerModel entero = new SpinnerNumberModel((int) num, (int) num, 999999999, 1);
-                jSpinner1.setModel(entero);
-            }
-            if (campoTemp.getTipo() instanceof Double) {
-                SpinnerModel double1 = new SpinnerNumberModel((double) num, (double) num, 999999999.9, 0.1);
-                jSpinner1.setModel(double1);
-            }
-            if (campoTemp.getTipo() instanceof Boolean) {
-                SpinnerModel booleano = new SpinnerNumberModel(0, 0, 0, 0);
-                jSpinner1.setModel(booleano);
-            }
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        
+
+    }//GEN-LAST:event_mi_modificarCampoActionPerformed
 
     private void jb_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modificarActionPerformed
         // TODO add your handling code here:
-        if (jListCampos.getSelectedIndex()>0) {
-            String nombre=tf_NombreCampo.getText();
-            int tamanio=(int) jSpinner1.getValue();
+        
+        String nombre="";
+        int tamanio=0;
+        
+        if (jListCampos.getSelectedIndex()>=0) {
+            nombre=tf_NombreCampo.getText();
+            tamanio=(int) jSpinner1.getValue();
         }
-        Campos campoAux=newCampoValido(jListCampos.getSelectedIndex());
+        Campos campoAux=(Campos) archivo_temp.getCampos().get(jListCampos.getSelectedIndex());
+        campoAux.setNombre(nombre);
+        campoAux.setTam(tf_tamanio);
         if (campoAux != null) {
             archivo_temp.modificarCampo(campoAux, jListCampos.getSelectedIndex());
-            JOptionPane.showMessageDialog(jList1, "Se modifico correctamente");
+            actualizarListaCampos2();
+            Modificar.setVisible(false);
+        }else{
         }
         
     
     }//GEN-LAST:event_jb_modificarActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mi_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_borrarActionPerformed
         // TODO add your handling code here:
         int selectedIndex = jListCampos.getSelectedIndex();
         if (selectedIndex != -1) {
             DefaultListModel modelo = (DefaultListModel) jListCampos.getModel();
-            modelo.remove(selectedIndex);
+            archivo_temp.getCampos().remove(selectedIndex);
+            actualizarListaCampos2();
             JOptionPane.showMessageDialog(null, "Elemento eliminado correctamente");
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona un elemento para eliminar");
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mi_borrarActionPerformed
 
     private void jb_crearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearCampoActionPerformed
         // TODO add your handling code here:
@@ -892,6 +885,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campo agregado correctamente");
         
     }//GEN-LAST:event_jb_crearCampoActionPerformed
+
+    private void DosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DosMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DosMouseEntered
+
+    private void DosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DosActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_DosActionPerformed
+
+    private void TresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -938,6 +944,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jList1.setModel(Listmodel);
     }
+        private void actualizarListaCampos2() {
+        DefaultListModel modelo=(DefaultListModel)jListCampos.getModel();
+        String tempcampo = "";
+        modelo.clear();
+        for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
+            tempcampo = archivo_temp.getCampos().get(i).toString();
+            modelo.addElement(tempcampo);
+        }
+        jListCampos.setModel(modelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Cuatro;
@@ -967,8 +983,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMGuardarArchivo;
     private javax.swing.JMenuItem jMNuevoArchivo;
     private javax.swing.JMenuItem jMSalirArchivo;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPA;
     private javax.swing.JPanel jPA1;
     private javax.swing.JPanel jPArchivos;
@@ -995,6 +1009,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_crearCampos;
     private javax.swing.JDialog jd_listarCampos;
     private javax.swing.JPanel jp_agregarCampo;
+    private javax.swing.JMenuItem mi_borrar;
+    private javax.swing.JMenuItem mi_modificarCampo;
     private javax.swing.JPopupMenu pm_Campos;
     private javax.swing.JPopupMenu pm_modificar;
     private javax.swing.JTextField tf_NombreCampo;
@@ -1006,69 +1022,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     static Archivos archivo_temp;
     LinkedList<Campos> campos;
     
-private Campos newCampoValido(int pos) {
-        Campos campoAux = (Campos) archivo_temp.getCampos().get(pos);//Para el momento de modificar
-
-        boolean valido = true;
-        Campos newCampo = new Campos();
-        //sino seleccionada se pondra falsa
-//        if (!campoAux.isLlavePrimaria()) {
-//            newCampo.setLlavePrimaria(false);
-//            if (C_llave_si1.isSelected()) {
-//                newCampo.setLlavePrimaria(true);
-//                if (archivoTemp.ExisteCampoLlavePrimaria()) {
-//                    valido = false;
-//                    JOptionPane.showMessageDialog(jTPane, "Ya existe un campo LLave primaria");
-//                }
-//            }
-//        } else {
-            newCampo.setLlavePrimaria(true);
-//        }
-//        if (!campoAux.isLlaveSecundaria()) {
-//            newCampo.setLlaveSecundaria(false);
-//            if (C_llave_si2.isSelected()) {
-//                newCampo.setLlaveSecundaria(true);
-//                if (archivoTemp.ExisteCampoLlaveSecundaria()) {
-//                    valido = false;
-//                    JOptionPane.showMessageDialog(jTPane, "Ya existe un campo LLave secu");
-//                }
-//            }
-//        } else {
-//            newCampo.setLlavePrimaria(true);
-//        }
-        //hasta aqui
-        newCampo.setNombre(tf_NombreCampo.getText());
-        newCampo.setTipo(campoAux.getTipo());
-
-//        if (CBTipo_campo1.getSelectedIndex() == 2) {
-//            if (((double) campoAux.getTamanio()) <= (double) jSLongitudCampo.getValue()) {
-//                String formato = "#." + "0".repeat(1);
-//                DecimalFormat df = new DecimalFormat(formato);
-//                double numeroRedondeado = Double.parseDouble(df.format((double) jSLongitudCampo.getValue()));
-//                newCampo.setTamanio(numeroRedondeado);
-//            }
-//        } else {
-//            if (((int) campoAux.getTamanio()) <= (int) jSLongitudCampo.getValue()) {
-//                newCampo.setTamanio((int) jSLongitudCampo.getValue());
-//            }
-//        }
-//
-//        if (TFnombre_campo1.getText().trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(jTPane, "Espacios Vacios");
-//            valido = false;
-//        }
-//        if (!campoAux.getNombre().equals(newCampo.getNombre())) {
-//            if (!archivoTemp.verificarNombre(TFnombre_campo1.getText())) {
-//                JOptionPane.showMessageDialog(jTPane, "Nombre no disponible");
-//                valido = false;
-//            }
-//        }
-//        if (!valido) {
-//            return null;
-//        }
-
-        return newCampo;
-    }   
+ 
 private void nuevo_archivo() {
         JFileChooser jfc = new JFileChooser("./");
 
@@ -1163,14 +1117,6 @@ private void guarArchivoTXT() throws IOException {
     private void cerrarArchivo() {
         archivo_temp = null;
         
-    }
-    public void modificarCampo(Campos campoM, int campo_Seleccionado) {
-        if (campo_Seleccionado >= 0 && campo_Seleccionado < campos.size()) {
-            campos.set(campo_Seleccionado, campoM);
-            System.out.println("campo modificado en la posición " + campo_Seleccionado);
-        } else {
-            System.out.println("Índice fuera de rango. No se puede modificar.");
-        }
     }
 //public void agregarElementoAvailList(Nodo nuevoNodo){
 //    listaEnlazada.addFirst(nuevoNodo);
