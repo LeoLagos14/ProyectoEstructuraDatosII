@@ -140,6 +140,7 @@ public class Archivos {
         return linea.toString();
     }
        public void escribirCamposEnArchivo(String nombreArchivo) {
+           //prubas sin formato esperado
 //        try (FileWriter writer = new FileWriter(nombreArchivo)) {
 //            for (Campos campo : campos) {
 //                writer.write(campo.getNombre() + "!");
@@ -151,38 +152,33 @@ public class Archivos {
 //            System.out.println("ERROR AL ESCRIBIR EN EL ARCHIVO");
 //        }
             try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
-        // Lee la primera línea del archivo
-        String primeraLinea = br.readLine();
-        
-        // Extrae los primeros dos elementos (separados por "|")
-        String[] partesIniciales = primeraLinea.split("\\|", 3);
-        
-        // Si la línea contiene al menos tres partes, continúa
-        if (partesIniciales.length >= 2) {
-            // Construye el contenido inicial de la línea a escribir
-            StringBuilder linea = new StringBuilder();
-            linea.append(partesIniciales[0]).append("|").append(partesIniciales[1]).append("|");
-            
-            // Añade los campos actuales de la lista `campos` en el formato requerido
-            for (Campos campo : campos) {
-                linea.append(campo.getNombre()).append("!");
-                linea.append(campo.getTipoString()).append("!");
-                linea.append(campo.getTam()).append("!");
-                linea.append(campo.getLlave()).append("/");
+            //leer primera linea
+            String primeraLinea = br.readLine();
+
+            String[] partesIniciales = primeraLinea.split("\\|", 3);
+
+            if (partesIniciales.length >= 2) {
+                StringBuilder linea = new StringBuilder();
+                linea.append(partesIniciales[0]).append("|").append(partesIniciales[1]).append("|");
+
+                // Añade los campos actuales de la lista `campos` en el formato requerido
+                for (Campos campo : campos) {
+                    linea.append(campo.getNombre()).append("!");
+                    linea.append(campo.getTipoString()).append("!");
+                    linea.append(campo.getTam()).append("!");
+                    linea.append(campo.getLlave()).append("/");
+                }
+
+                // Escribe la línea completa en el archivo
+                try (FileWriter writer = new FileWriter(nombreArchivo)) {
+                    writer.write(linea.toString());
+                }
+            } else {
             }
-            
-            // Escribe la línea completa en el archivo
-            try (FileWriter writer = new FileWriter(nombreArchivo)) {
-                writer.write(linea.toString());
-            }
-        } else {
-            System.out.println("La primera línea no tiene el formato esperado.");
+        } catch (IOException e) {
+            System.out.println("ERROR AL ESCRIBIR EN EL ARCHIVO");
         }
-    } catch (IOException e) {
-        System.out.println("ERROR AL ESCRIBIR EN EL ARCHIVO");
-    }
     }
 
-    
-    
+
 }
