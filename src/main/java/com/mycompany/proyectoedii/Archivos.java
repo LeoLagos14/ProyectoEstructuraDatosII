@@ -177,6 +177,7 @@ public class Archivos {
             }
         } catch (IOException e) {
             System.out.println("ERROR AL ESCRIBIR EN EL ARCHIVO");
+                System.out.println(e.getLocalizedMessage());
         }
     }
 

@@ -778,6 +778,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jLCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLCamposMouseClicked
         // TODO add your handling code here:
+        System.out.println("Show me up");
         pm_Campos.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jLCamposMouseClicked
 
@@ -858,8 +859,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         int tamanio=0;
         
         if (jListCampos.getSelectedIndex()>=0) {
-            nombre=tf_NombreCampo.getText();
-            tamanio=(int) jSpinner1.getValue();
+            nombre = tf_NombreCampo.getText();
+            tamanio = (int) jSpinner1.getValue();
         }
         Campos campoAux=(Campos) archivo_temp.getCampos().get(jListCampos.getSelectedIndex());
         campoAux.setNombre(nombre);
@@ -889,10 +890,36 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jb_crearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearCampoActionPerformed
         // TODO add your handling code here:
-        DefaultListModel <String>modelo = (DefaultListModel) jListCampos.getModel();
-        Campos campo=new Campos();
-        campo.setNombre(tf_nombreCrear.getText());
-            modelo.addElement(campo.toString());
+        
+        /* DefaultListModel<String> Listmodel;
+        Listmodel = new DefaultListModel<>();
+        String tempcampo = "";
+        for (int i = 0; i < archivoTemp.getCampos().size(); i++) {
+            tempcampo = archivoTemp.getCampos().get(i).toString();
+            Listmodel.addElement(tempcampo);
+        }
+        JListLista_campos.setModel(Listmodel);
+        */
+        
+          DefaultListModel<String> Listmodel;
+        Listmodel = new DefaultListModel<>();
+        String tempcampo = "";
+        
+
+        
+        for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
+            tempcampo = archivo_temp.getCampos().get(i).toString();
+            Listmodel.addElement(tempcampo);
+        }
+        jListCampos.setModel(Listmodel);
+        
+            
+        
+        //DefaultListModel modelo =  (DefaultListModel) jListCampos.getModel();
+        //Campos campo=new Campos();
+        //campo.setNombre(tf_nombreCrear.getText());
+         //   modelo.addElement(campo.toString());
+            
             JOptionPane.showMessageDialog(null, "Campo agregado correctamente");
         
     }//GEN-LAST:event_jb_crearCampoActionPerformed
@@ -906,6 +933,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
          for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
             campo_tempo = archivo_temp.getCampos().get(i).toString();
             LModel.addElement(campo_tempo.toString());
+             //System.out.println("Campot tempo " + campo_tempo.toString());
         }
          jListCampos.setModel(LModel);
          jListCampos.setVisible(true);
