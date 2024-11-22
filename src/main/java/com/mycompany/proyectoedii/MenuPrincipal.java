@@ -46,6 +46,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         this.setSize(877, 551);
+        jListCampos.setModel(new DefaultListModel<String>());
     }
 
     /**
@@ -81,10 +82,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         tf_nombreCrear = new javax.swing.JTextField();
         tf_tamanio = new javax.swing.JTextField();
-        tf_tipo = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_llave = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jb_crearCampo = new javax.swing.JButton();
+        cb_tipoCampo = new javax.swing.JComboBox<>();
         jd_listarCampos = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -237,13 +238,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Llave primaria");
 
-        tf_tipo.addActionListener(new java.awt.event.ActionListener() {
+        cb_llave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+        cb_llave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_tipoActionPerformed(evt);
+                cb_llaveActionPerformed(evt);
             }
         });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -256,6 +256,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jb_crearCampoActionPerformed(evt);
             }
         });
+
+        cb_tipoCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entero", "Cadena", "Double", "Booleano" }));
 
         javax.swing.GroupLayout jp_agregarCampoLayout = new javax.swing.GroupLayout(jp_agregarCampo);
         jp_agregarCampo.setLayout(jp_agregarCampoLayout);
@@ -277,11 +279,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
                                 .addGap(49, 49, 49)
-                                .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_tamanio, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tf_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tf_nombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tf_tamanio, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                    .addComponent(tf_nombreCrear, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                    .addComponent(cb_llave, 0, 242, Short.MAX_VALUE)
+                                    .addComponent(cb_tipoCampo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(123, Short.MAX_VALUE))
         );
         jp_agregarCampoLayout.setVerticalGroup(
@@ -297,13 +299,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_tamanio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(45, 45, 45)
                 .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                    .addComponent(cb_tipoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
                 .addGroup(jp_agregarCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_llave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(jb_crearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -797,10 +799,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jd_crearCampos.setVisible(true);
     }//GEN-LAST:event_mi_CrearCampoActionPerformed
 
-    private void tf_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_tipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_tipoActionPerformed
-
     private void jSeparator5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSeparator5MouseClicked
         // TODO add your handling code here:
       
@@ -889,12 +887,39 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jb_crearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearCampoActionPerformed
         // TODO add your handling code here:
-        DefaultListModel <String>modelo = (DefaultListModel) jListCampos.getModel();
-        Campos campo=new Campos();
-        campo.setNombre(tf_nombreCrear.getText());
-            modelo.addElement(campo.toString());
+        if (tf_nombreCrear.getText().equals("")||tf_tamanio.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Hay un campo vacio");
+        }else{
+            Campos campo = new Campos();
+            campo.setNombre(tf_nombreCrear.getText());
+            campo.setTam(tf_tamanio.getText());
+            String frase="";
+            if (cb_tipoCampo.getSelectedIndex()==0) {
+                frase="Entero";
+            }else if(cb_tipoCampo.getSelectedIndex()==1){
+                frase="Cadena";
+            }else if (cb_tipoCampo.getSelectedIndex()==2){
+                frase="Double";
+            }else{
+                frase="Booleano";
+            }
+            campo.setTipo((Object)frase);
+            String key="";
+            boolean bandera=true;
+            if (cb_llave.getSelectedIndex()==0) {
+                campo.setLlavePrimaria(bandera);
+            }else{
+                campo.setLlaveSecundaria(bandera);
+                bandera=false;
+                campo.setLlavePrimaria(bandera);
+            }
+            archivo_temp.getCampos().add(campo);
+            actualizarListaCampos2();
             JOptionPane.showMessageDialog(null, "Campo agregado correctamente");
-        
+            jd_crearCampos.setVisible(false);
+            tf_NombreCampo.setText("");
+            tf_tamanio.setText("");
+        }
     }//GEN-LAST:event_jb_crearCampoActionPerformed
 
     private void mi_ListarCmposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_ListarCmposActionPerformed
@@ -909,8 +934,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
          jListCampos.setModel(LModel);
          jListCampos.setVisible(true);
-       
-        
     }//GEN-LAST:event_mi_ListarCmposActionPerformed
 
     private void mi_ModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_ModificarCampoActionPerformed
@@ -957,6 +980,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pm_Registros.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jLRegistrosMouseClicked
 
+    private void cb_llaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_llaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_llaveActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1002,20 +1029,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jList1.setModel(Listmodel);
     }
-        private void actualizarListaCampos2() {
-        DefaultListModel modelo=(DefaultListModel)jListCampos.getModel();
-        String tempcampo = "";
-        modelo.clear();
-        for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
-            tempcampo = archivo_temp.getCampos().get(i).toString();
-            modelo.addElement(tempcampo);
+       private void actualizarListaCampos2() {
+//        DefaultListModel modelo=(DefaultListModel)jListCampos.getModel();
+//        String tempcampo = "";
+//        modelo.clear();
+//        for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
+//            tempcampo = archivo_temp.getCampos().get(i).toString();
+//            modelo.addElement(tempcampo);
+//        }
+//        jListCampos.setModel(modelo);
+        DefaultListModel<String> model = (DefaultListModel<String>) jListCampos.getModel();
+        model.clear(); // Limpia el modelo actual
+        for (Campos campo : archivo_temp.getCampos()) {
+            model.addElement(campo.toString()); // Agrega los elementos que desees mostrar
         }
-        jListCampos.setModel(modelo);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Modificar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cb_llave;
+    private javax.swing.JComboBox<String> cb_tipoCampo;
     private javax.swing.JLabel jLArchivos;
     private javax.swing.JLabel jLArchivosNombre;
     private javax.swing.JLabel jLCampos;
@@ -1083,7 +1117,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_NombreCampo;
     private javax.swing.JTextField tf_nombreCrear;
     private javax.swing.JTextField tf_tamanio;
-    private javax.swing.JTextField tf_tipo;
     // End of variables declaration//GEN-END:variables
 
     static Archivos archivo_temp;

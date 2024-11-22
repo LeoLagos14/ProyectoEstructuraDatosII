@@ -110,7 +110,7 @@ public class Campos {
     }
 
     public void setTam(Object tamanio) {
-        this.tam = tam;
+        this.tam = tamanio;
     }
 
     @Override
@@ -122,7 +122,6 @@ public class Campos {
         if (llave_secundaria) {
             llave = "Secundaria";
         }
-        return nombre;
+        return nombre + "  -  " + getTipoString()+ "  -  " + getTam() + "  -  " + llave;
     }
-      
 }

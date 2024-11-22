@@ -167,11 +167,11 @@
                                           <Component id="jLabel1" pref="146" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="tf_tamanio" min="-2" pref="242" max="-2" attributes="0"/>
-                                          <Component id="tf_tipo" min="-2" pref="242" max="-2" attributes="0"/>
-                                          <Component id="tf_nombreCrear" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
-                                          <Component id="jComboBox1" min="-2" pref="242" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="tf_tamanio" pref="242" max="32767" attributes="0"/>
+                                          <Component id="tf_nombreCrear" alignment="0" pref="242" max="32767" attributes="0"/>
+                                          <Component id="cb_llave" pref="242" max="32767" attributes="0"/>
+                                          <Component id="cb_tipoCampo" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -196,14 +196,14 @@
                           <Component id="jLabel2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="tf_tamanio" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="tf_tipo" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="cb_tipoCampo" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jComboBox1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="cb_llave" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -254,12 +254,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tf_tamanio">
             </Component>
-            <Component class="javax.swing.JTextField" name="tf_tipo">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_tipoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="cb_llave">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -268,6 +263,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_llaveActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -291,6 +289,21 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_crearCampoActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cb_tipoCampo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Entero"/>
+                    <StringItem index="1" value="Cadena"/>
+                    <StringItem index="2" value="Double"/>
+                    <StringItem index="3" value="Booleano"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
