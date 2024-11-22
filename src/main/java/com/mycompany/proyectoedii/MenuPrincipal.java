@@ -98,9 +98,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         tf_NombreCampo = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
+        js_ModLongitud = new javax.swing.JSpinner();
         jb_modificar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        cb_modTipo = new javax.swing.JComboBox<>();
         pm_Registros = new javax.swing.JPopupMenu();
         mi_IntroducirRegstro = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
@@ -410,28 +412,40 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("MODIFICAR CAMPO");
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Tipo");
+
+        cb_modTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entero", "Cadena", "Double", "Booleano" }));
+        cb_modTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_modTipoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ModificarLayout = new javax.swing.GroupLayout(Modificar.getContentPane());
         Modificar.getContentPane().setLayout(ModificarLayout);
         ModificarLayout.setHorizontalGroup(
             ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jb_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(206, 206, 206))
             .addGroup(ModificarLayout.createSequentialGroup()
                 .addGroup(ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ModificarLayout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ModificarLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addGroup(ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(43, 43, 43)
                         .addGroup(ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tf_NombreCampo, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                            .addComponent(jSpinner1)))
+                            .addComponent(js_ModLongitud)
+                            .addComponent(cb_modTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(ModificarLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(189, 189, 189)
+                        .addComponent(jb_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         ModificarLayout.setVerticalGroup(
@@ -439,17 +453,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(ModificarLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_NombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
+                .addGap(53, 53, 53)
                 .addGroup(ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(111, 111, 111)
+                    .addComponent(js_ModLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addGroup(ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cb_modTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(110, 110, 110)
                 .addComponent(jb_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addGap(148, 148, 148))
         );
 
         mi_IntroducirRegstro.setText("Introducir Registros");
@@ -849,37 +867,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mi_modificarCampoActionPerformed
 
-    private void jb_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modificarActionPerformed
-        // TODO add your handling code here:
-        
-        String nombre="";
-        int tamanio=0;
-        
-        if (jListCampos.getSelectedIndex()>=0) {
-            nombre=tf_NombreCampo.getText();
-            tamanio=(int) jSpinner1.getValue();
-        }
-        Campos campoAux=(Campos) archivo_temp.getCampos().get(jListCampos.getSelectedIndex());
-        campoAux.setNombre(nombre);
-        campoAux.setTam(tf_tamanio);
-        if (campoAux != null) {
-            archivo_temp.modificarCampo(campoAux, jListCampos.getSelectedIndex());
-            actualizarListaCampos2();
-            Modificar.setVisible(false);
-        }else{
-        }
-        
-    
-    }//GEN-LAST:event_jb_modificarActionPerformed
-
     private void mi_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_borrarActionPerformed
         // TODO add your handling code here:
         int selectedIndex = jListCampos.getSelectedIndex();
-        if (selectedIndex != -1) {
-            DefaultListModel modelo = (DefaultListModel) jListCampos.getModel();
-            archivo_temp.getCampos().remove(selectedIndex);
-            actualizarListaCampos2();
-            JOptionPane.showMessageDialog(null, "Elemento eliminado correctamente");
+        if (selectedIndex > -1) {
+            System.out.println(archivo_temp.getCampos().get(selectedIndex).getLlave().equals("1"));
+            if (archivo_temp.getCampos().get(selectedIndex).getLlave().equals("1")) {
+                JOptionPane.showMessageDialog(null, "No se puede eliminar la llave primaria");
+            } else {
+                archivo_temp.getCampos().remove(selectedIndex);
+                actualizarListaCampos2();
+                JOptionPane.showMessageDialog(null, "Elemento eliminado correctamente");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona un elemento para eliminar");
         }
@@ -893,16 +892,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             Campos campo = new Campos();
             campo.setNombre(tf_nombreCrear.getText());
             campo.setTam(tf_tamanio.getText());
-            String frase="";
-            if (cb_tipoCampo.getSelectedIndex()==0) {
-                frase="Entero";
-            }else if(cb_tipoCampo.getSelectedIndex()==1){
-                frase="Cadena";
-            }else if (cb_tipoCampo.getSelectedIndex()==2){
-                frase="Double";
-            }else{
-                frase="Booleano";
-            }
+            String frase=devolverTipo(cb_tipoCampo);
             campo.setTipo((Object)frase);
             String key="";
             boolean bandera=true;
@@ -914,7 +904,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 campo.setLlavePrimaria(bandera);
             }
             archivo_temp.getCampos().add(campo);
-            actualizarListaCampos2();
+            
             JOptionPane.showMessageDialog(null, "Campo agregado correctamente");
             jd_crearCampos.setVisible(false);
             tf_NombreCampo.setText("");
@@ -924,26 +914,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void mi_ListarCmposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_ListarCmposActionPerformed
         // TODO add your handling code here:
-        jPopupMenuArchivos.setVisible(false);
-         pm_Campos.setVisible(false);
-         DefaultListModel<String> LModel = new DefaultListModel<>();
-         String campo_tempo = "";
-         for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
-            campo_tempo = archivo_temp.getCampos().get(i).toString();
-            LModel.addElement(campo_tempo.toString());
-        }
-         jListCampos.setModel(LModel);
-         jListCampos.setVisible(true);
+//        jPopupMenuArchivos.setVisible(false);
+//         pm_Campos.setVisible(false);
+         actualizarListaCampos2();
+//         jListCampos.setVisible(true);
     }//GEN-LAST:event_mi_ListarCmposActionPerformed
 
     private void mi_ModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_ModificarCampoActionPerformed
         // TODO add your handling code here:
-        tf_NombreCampo.setText(archivo_temp.getCampos().get(jListCampos.getSelectedIndex()).getNombre());
-        //jSpinner1.setValue((int)archivo_temp.getCampos().get(jListCampos.getSelectedIndex()).getTam());
-        Modificar.pack();
-        Modificar.setLocationRelativeTo(this);
-        Modificar.setModal(true);
-        Modificar.setVisible(true);
+        if (archivo_temp.getCampos().size() == 0) {
+            JOptionPane.showMessageDialog(this, "No hay campos para modificar");
+        } else {
+            if (jListCampos.getSelectedIndex() >= 0) {
+                tf_NombreCampo.setText(archivo_temp.getCampos().get(jListCampos.getSelectedIndex()).getNombre());
+                Modificar.pack();
+                Modificar.setLocationRelativeTo(this);
+                Modificar.setModal(true);
+                Modificar.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Primero seleccione un campo a modificar");
+            }
+        }
     }//GEN-LAST:event_mi_ModificarCampoActionPerformed
 
     private void pm_CamposMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_CamposMouseEntered
@@ -964,12 +955,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void mi_borrarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_borrarCampoActionPerformed
         // TODO add your handling code here:
-         int selectedIndex = jListCampos.getSelectedIndex();
-        if (selectedIndex != -1) {
-            DefaultListModel modelo = (DefaultListModel) jListCampos.getModel();
-            archivo_temp.getCampos().remove(selectedIndex);
-            actualizarListaCampos2();
-            JOptionPane.showMessageDialog(null, "Elemento eliminado correctamente");
+        int selectedIndex = jListCampos.getSelectedIndex();
+        if (selectedIndex > -1) {
+            System.out.println(archivo_temp.getCampos().get(selectedIndex).getLlave().equals("1"));
+            if (archivo_temp.getCampos().get(selectedIndex).getLlave().equals("1")) {
+                JOptionPane.showMessageDialog(null, "No se puede eliminar la llave primaria");
+            } else {
+                archivo_temp.getCampos().remove(selectedIndex);
+                actualizarListaCampos2();
+                JOptionPane.showMessageDialog(null, "Elemento eliminado correctamente");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona un elemento para eliminar");
         }
@@ -983,6 +978,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void cb_llaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_llaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_llaveActionPerformed
+
+    private void jb_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modificarActionPerformed
+        // TODO add your handling code here:
+
+        String nombre="";
+        int tamanio=0;
+        if (jListCampos.getSelectedIndex() >= 0) {
+            nombre = tf_NombreCampo.getText();
+            tamanio = (int) js_ModLongitud.getValue();
+            Campos campoAux = (Campos) archivo_temp.getCampos().get(jListCampos.getSelectedIndex());
+            campoAux.setNombre(nombre);
+            campoAux.setTam(tamanio);
+            String tipo=devolverTipo(cb_modTipo);
+            campoAux.setTipo(tipo);
+            if (campoAux != null) {
+                archivo_temp.modificarCampo(campoAux, jListCampos.getSelectedIndex());
+                actualizarListaCampos2();
+                Modificar.setVisible(false);
+                JOptionPane.showMessageDialog(this, "Campo modificado con exito");
+            } else {
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Primero seleccione un campo a modificar");
+        }
+        
+
+    }//GEN-LAST:event_jb_modificarActionPerformed
+
+    private void cb_modTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_modTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_modTipoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1045,10 +1071,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         
     }
+       private String devolverTipo(JComboBox com){
+           String frase="";
+           System.out.println(com.getSelectedIndex());
+           if (com.getSelectedIndex()==0) {
+                frase="Entero";
+            }else if(com.getSelectedIndex()==1){
+                frase="Cadena";
+            }else if (com.getSelectedIndex()==2){
+                frase="Double";
+            }else{
+                frase="Booleano";
+            }
+           return frase;
+       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Modificar;
     private javax.swing.JComboBox<String> cb_llave;
+    private javax.swing.JComboBox<String> cb_modTipo;
     private javax.swing.JComboBox<String> cb_tipoCampo;
     private javax.swing.JLabel jLArchivos;
     private javax.swing.JLabel jLArchivosNombre;
@@ -1058,6 +1099,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLIndices;
     private javax.swing.JLabel jLRegistros;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1095,12 +1137,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton jb_crearCampo;
     private javax.swing.JButton jb_modificar;
     private javax.swing.JDialog jd_crearCampos;
     private javax.swing.JDialog jd_listarCampos;
     private javax.swing.JPanel jp_agregarCampo;
+    private javax.swing.JSpinner js_ModLongitud;
     private javax.swing.JMenuItem mi_BuscarRegistro;
     private javax.swing.JMenuItem mi_CrearCampo;
     private javax.swing.JMenuItem mi_EliminarRegistro;

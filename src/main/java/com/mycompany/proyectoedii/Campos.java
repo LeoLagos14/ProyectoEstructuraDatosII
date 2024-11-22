@@ -37,17 +37,7 @@ public class Campos {
         this.llave_secundaria = newCampo.isLlaveSecundaria();
     }
       public String getTipoString() {
-        if (tipo instanceof String) {
-            return "Cadena";
-        }
-        if (tipo instanceof Double) {
-            return "Double";
-        }
-        if (tipo instanceof Integer) {
-            return "Entero";
-        }
-
-        return "Booleano";
+        return (String)tipo;
     }
        public Object getTipo() {
         return tipo;
@@ -79,11 +69,14 @@ public class Campos {
         return llave_primaria;
     }
 
-    public String getLlavePrimaria() {
+    public boolean getLlavePrimaria() {
+        boolean bandera=true;
         if (llave_primaria) {
-            return "1";
+          
+        }else{
+            bandera=false;
         }
-        return "0";
+        return bandera;
     }
 
     public String getLlaveSecundaria() {
