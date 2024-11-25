@@ -180,6 +180,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jMSalirArchivoMouseClicked(evt);
             }
         });
+        jMSalirArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMSalirArchivoActionPerformed(evt);
+            }
+        });
         jPopupMenuArchivos.add(jMSalirArchivo);
 
         pm_Campos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1133,10 +1138,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (contador==jt_Introd.getRowCount()) {
             JOptionPane.showMessageDialog(this, "Ingrese informacion de registros");
         }else{
+            jd_IntroRegistro.setVisible(false);
             JOptionPane.showMessageDialog(this, "Registros agregados con éxito");
         }
         
     }//GEN-LAST:event_jb_agregarRegistroActionPerformed
+
+    private void jMSalirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSalirArchivoActionPerformed
+        // TODO add your handling code here:
+        archivo_temp=null;
+        jLArchivosNombre.setText("");
+        JOptionPane.showMessageDialog(this, "Archivo cerrado");
+    }//GEN-LAST:event_jMSalirArchivoActionPerformed
 
     /**
      * @param args the command line arguments
