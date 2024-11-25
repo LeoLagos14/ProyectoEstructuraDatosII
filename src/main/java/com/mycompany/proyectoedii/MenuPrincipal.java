@@ -111,6 +111,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mi_BuscarRegistro = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         mi_EliminarRegistro = new javax.swing.JMenuItem();
+        jd_IntroRegistro = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
+        jd_IntroReg = new javax.swing.JScrollPane();
+        jt_Introd = new javax.swing.JTable();
+        jb_agregarRegistro = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jPArchivos = new javax.swing.JPanel();
@@ -471,6 +478,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         mi_IntroducirRegstro.setText("Introducir Registros");
+        mi_IntroducirRegstro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_IntroducirRegstroActionPerformed(evt);
+            }
+        });
         pm_Registros.add(mi_IntroducirRegstro);
         pm_Registros.add(jSeparator8);
 
@@ -484,6 +496,74 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         mi_EliminarRegistro.setText("Eliminar registro");
         pm_Registros.add(mi_EliminarRegistro);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Nuevo Registro");
+
+        jt_Introd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jt_Introd.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jd_IntroReg.setViewportView(jt_Introd);
+
+        jb_agregarRegistro.setText("AGREGAR");
+        jb_agregarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_agregarRegistroActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_IntroRegistroLayout = new javax.swing.GroupLayout(jd_IntroRegistro.getContentPane());
+        jd_IntroRegistro.getContentPane().setLayout(jd_IntroRegistroLayout);
+        jd_IntroRegistroLayout.setHorizontalGroup(
+            jd_IntroRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_IntroRegistroLayout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addComponent(jd_IntroReg, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
+            .addGroup(jd_IntroRegistroLayout.createSequentialGroup()
+                .addGroup(jd_IntroRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_IntroRegistroLayout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_IntroRegistroLayout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(jb_agregarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jd_IntroRegistroLayout.setVerticalGroup(
+            jd_IntroRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_IntroRegistroLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jd_IntroReg, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                .addComponent(jb_agregarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1010,6 +1090,54 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_modTipoActionPerformed
 
+    private void mi_IntroducirRegstroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_IntroducirRegstroActionPerformed
+        // TODO add your handling code here:
+        jd_IntroRegistro.pack();
+        jd_IntroRegistro.setLocationRelativeTo(this);
+        jd_IntroRegistro.setModal(false);
+        jd_IntroRegistro.setVisible(true);
+        DefaultTableModel tableModel = new DefaultTableModel();
+        
+        String [] nombres=new String[archivo_temp.getCampos().size()];
+        for (int i = 0; i < nombres.length; i++) {
+            nombres[i]=archivo_temp.getCampos().get(i).getNombre();
+        }
+        tableModel.setColumnIdentifiers(nombres);
+        for (int i = 0; i < 5; i++) {
+            tableModel.addRow(new Object[nombres.length]); 
+        }
+        
+        jt_Introd.setModel(tableModel);
+        jt_Introd.setFillsViewportHeight(true);
+
+        
+    }//GEN-LAST:event_mi_IntroducirRegstroActionPerformed
+
+    private void jb_agregarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarRegistroActionPerformed
+        // TODO add your handling code here:
+        int contador=0;
+        for (int i = 0; i < jt_Introd.getRowCount(); i++) {
+            boolean filaCompleta = true; 
+
+            for (int j = 0; j < jt_Introd.getColumnCount(); j++) {
+                if (jt_Introd.getValueAt(i, j) == null || jt_Introd.getValueAt(i, j).toString().isEmpty()) {
+                    filaCompleta = false;
+                    contador++;
+                    break;
+                }
+            }
+            if (filaCompleta) {
+                Registro nuevo = new Registro();
+            }
+        }
+        if (contador==jt_Introd.getRowCount()) {
+            JOptionPane.showMessageDialog(this, "Ingrese informacion de registros");
+        }else{
+            JOptionPane.showMessageDialog(this, "Registros agregados con éxito");
+        }
+        
+    }//GEN-LAST:event_jb_agregarRegistroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1100,6 +1228,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLRegistros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1127,6 +1256,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -1137,12 +1267,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jb_agregarRegistro;
     private javax.swing.JButton jb_crearCampo;
     private javax.swing.JButton jb_modificar;
+    private javax.swing.JScrollPane jd_IntroReg;
+    private javax.swing.JDialog jd_IntroRegistro;
     private javax.swing.JDialog jd_crearCampos;
     private javax.swing.JDialog jd_listarCampos;
     private javax.swing.JPanel jp_agregarCampo;
     private javax.swing.JSpinner js_ModLongitud;
+    private javax.swing.JTable jt_Introd;
     private javax.swing.JMenuItem mi_BuscarRegistro;
     private javax.swing.JMenuItem mi_CrearCampo;
     private javax.swing.JMenuItem mi_EliminarRegistro;
