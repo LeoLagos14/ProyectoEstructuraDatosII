@@ -19,8 +19,31 @@ import java.util.LinkedList;
  */
 public class Archivos {
     private String path, nombreArchivo;
-    private LinkedList<Nodo>listaEnlazada= new LinkedList<>();
+    private int cantidadRegistros;//
+    public LinkedList<Registro> getAvailist() {
+        return availist;
+    }
+    private LinkedList<Registro> availist;
     private LinkedList<Campos>campos;
+
+    public void setAvailist(LinkedList<Registro> availist) {
+        this.availist = availist;
+    }
+    public int getCantidadRegistros() {
+        return cantidadRegistros;
+    }
+
+    public void setCantidadRegistros(int cantidadRegistros) {
+        this.cantidadRegistros = cantidadRegistros;
+    }
+
+    public void addCantRegs() {
+        this.cantidadRegistros++;
+    }
+    public void subCantRegs(){
+        this.cantidadRegistros--;
+    }
+    
     
     public Archivos(String nombreArchivo, String path){
         this.nombreArchivo = nombreArchivo;
@@ -52,13 +75,7 @@ public class Archivos {
         this.nombreArchivo = nombreArchivo;
     }
 
-    public LinkedList<Nodo> getListaEnlazada() {
-        return listaEnlazada;
-    }
-
-    public void setListaEnlazada(LinkedList<Nodo> listaEnlazada) {
-        this.listaEnlazada = listaEnlazada;
-    }
+    
 
     public LinkedList<Campos> getCampos() {
         return campos;
@@ -66,6 +83,25 @@ public class Archivos {
 
     public void setCampos(LinkedList<Campos> campos) {
         this.campos = campos;
+    }
+    public int getLlavePrimariaIndex() {
+        int index = -1;
+        for (Campos campo : campos) {
+            if ("1".equals(campo.getLlavePrimaria())) {
+                index = campos.indexOf(campo);
+            }
+        }
+        return index;
+    }
+
+    public int getLlaveSecundariaIndex() {
+        int index = -1;
+        for (Campos campo : campos) {
+            if ("1".equals(campo.getLlaveSecundaria())) {
+                index = campos.indexOf(campo);
+            }
+        }
+        return index;
     }
      public void setCamposOpen(String linea) {
         if (linea != null) {

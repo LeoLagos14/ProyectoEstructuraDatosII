@@ -69,14 +69,12 @@ public class Campos {
         return llave_primaria;
     }
 
-    public boolean getLlavePrimaria() {
-        boolean bandera=true;
+    public int getLlavePrimaria() {
         if (llave_primaria) {
-          
+          return 1;
         }else{
-            bandera=false;
+            return 0;
         }
-        return bandera;
     }
 
     public String getLlaveSecundaria() {

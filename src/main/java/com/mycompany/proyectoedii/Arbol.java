@@ -5,6 +5,7 @@
 package com.mycompany.proyectoedii;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,9 +22,51 @@ public class Arbol implements Serializable{
         mNodoRaiz = new Nodo();
         mNodoRaiz.isHoja = true;
     }
+     public ArrayList<Registro> getAllKeys(){
+        return getKeys(mNodoRaiz);
+    }
+    
+    private ArrayList<Registro> getKeys(Nodo node) {
+        ArrayList<Registro> array = new ArrayList<Registro>();
+        if (node != null) {
+            if (node.isHoja) {
+                for (int i = 0; i < node.mNumKeys; i++) {
+                    array.add(node.mRegistros[i]);
+                }
+            } else {
+                int i;
+                for (i = 0; i < node.mNumKeys; i++) {
+                    array.addAll(getKeys(node.mNodosHijos[i]));
+                    array.add(node.mRegistros[i]);
+                }
+                array.addAll(getKeys(node.mNodosHijos[i]));
+            }
+        }
+        return array;
+    }
+     public Registro B_Buscar(int key) {
+        return search(mNodoRaiz, key);
+    }
+     public Registro search(Nodo node, int key) {
+        int i = 0;
+        while (i < node.mNumKeys && key > node.mKeys[i]) {
+            i++;
+        }
+        if (i < node.mNumKeys && key == node.mKeys[i]) {
+            return node.mRegistros[i];
+        }
+        if (node.isHoja) {
+            return null;
+        } else {
+            return search(node.mNodosHijos[i], key);
+        }
+    }
 
     public void B_Insert(int key, Registro registro) {
         Nodo rootNode = mNodoRaiz;
+        if (mNodoRaiz == null) {
+            mNodoRaiz = new Nodo(); // Inicializa la raíz si está vacía
+        }
         if (!update(mNodoRaiz, key, registro)) {
             if (rootNode.mNumKeys == (2 * T - 1)) {
                 Nodo newRootNode = new Nodo();
