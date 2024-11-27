@@ -518,7 +518,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Nuevo Registro");
 
-        jt_Introd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jt_Introd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jt_Introd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
