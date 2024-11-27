@@ -78,19 +78,19 @@ public class Archivos {
                     campoAux.setNombre(datos[0]);
 
                     if (datos[1].equals("Cadena")) {
-                        campoAux.setTipo("");
+                        campoAux.setTipo("Cadena");
                     }
 
                     if (datos[1].equals("Entero")) {
-                        campoAux.setTipo(0);
+                        campoAux.setTipo("Entero");
                     }
 
                     if (datos[1].equals("Double")) {
-                        campoAux.setTipo(0.0);
+                        campoAux.setTipo("Double");
                     }
 
                     if (datos[1].equals("Booleano")) {
-                        campoAux.setTipo(true);
+                        campoAux.setTipo("Booleano");
                     }
 
                     try {

@@ -971,29 +971,42 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jb_crearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearCampoActionPerformed
         // TODO add your handling code here:
-        if (tf_nombreCrear.getText().equals("")||tf_tamanio.getText().equals("")) {
+        if (tf_nombreCrear.getText().equals("") || tf_tamanio.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Hay un campo vacio");
-        }else{
+        } else {
             Campos campo = new Campos();
             campo.setNombre(tf_nombreCrear.getText());
             campo.setTam(tf_tamanio.getText());
-            String frase=devolverTipo(cb_tipoCampo);
-            campo.setTipo((Object)frase);
-            String key="";
-            boolean bandera=true;
-            if (cb_llave.getSelectedIndex()==0) {
+            String frase = devolverTipo(cb_tipoCampo);
+            campo.setTipo((Object) frase);
+            String key = "";
+            boolean bandera = true;
+            if (cb_llave.getSelectedIndex() == 0) {
                 campo.setLlavePrimaria(bandera);
-            }else{
+                if (hayLlavePrimaria(archivo_temp.getCampos())) {
+                    JOptionPane.showMessageDialog(null, "Ya existe un campo como llave primaria");
+                } else {
+                    archivo_temp.getCampos().add(campo);
+
+                    JOptionPane.showMessageDialog(null, "Campo agregado correctamente");
+                    jd_crearCampos.setVisible(false);
+                    tf_NombreCampo.setText("");
+                    tf_tamanio.setText("");
+
+                }
+
+            } else {
                 campo.setLlaveSecundaria(bandera);
-                bandera=false;
+                bandera = false;
                 campo.setLlavePrimaria(bandera);
+                archivo_temp.getCampos().add(campo);
+
+                JOptionPane.showMessageDialog(null, "Campo agregado correctamente");
+                jd_crearCampos.setVisible(false);
+                tf_NombreCampo.setText("");
+                tf_tamanio.setText("");
             }
-            archivo_temp.getCampos().add(campo);
-            
-            JOptionPane.showMessageDialog(null, "Campo agregado correctamente");
-            jd_crearCampos.setVisible(false);
-            tf_NombreCampo.setText("");
-            tf_tamanio.setText("");
+
         }
     }//GEN-LAST:event_jb_crearCampoActionPerformed
 
@@ -1120,9 +1133,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jb_agregarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarRegistroActionPerformed
         // TODO add your handling code here:
-        int contador=0;
+        int contador = 0;
+        int contador2=0;
         for (int i = 0; i < jt_Introd.getRowCount(); i++) {
-            boolean filaCompleta = true; 
+            boolean filaCompleta = true;
+            ArrayList nueva = new ArrayList();
 
             for (int j = 0; j < jt_Introd.getColumnCount(); j++) {
                 if (jt_Introd.getValueAt(i, j) == null || jt_Introd.getValueAt(i, j).toString().isEmpty()) {
@@ -1130,16 +1145,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     contador++;
                     break;
                 }
+                if (filaCompleta) {
+
+                    nueva.add(jt_Introd.getValueAt(i, j));
+                    contador2++;
+
+                }
             }
-            if (filaCompleta) {
-                Registro nuevo = new Registro();
-            }
+            Registro nuevo = new Registro();
+            nuevo.setInformacion(nueva);//tengo un nuevo registro completo
+
         }
-        if (contador==jt_Introd.getRowCount()) {
+        if (contador == jt_Introd.getRowCount()) {
             JOptionPane.showMessageDialog(this, "Ingrese informacion de registros");
-        }else{
+        } else {
             jd_IntroRegistro.setVisible(false);
-            JOptionPane.showMessageDialog(this, "Registros agregados con éxito");
+            JOptionPane.showMessageDialog(this, contador+" Registros agregados con éxito");
         }
         
     }//GEN-LAST:event_jb_agregarRegistroActionPerformed
@@ -1185,6 +1206,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             
         });
+    }
+    private boolean hayLlavePrimaria(LinkedList<Campos> x){
+        int contador=0;
+        for (Campos o : x) {
+            if (o.getLlavePrimaria()==true) {
+                contador++;
+            }
+        }
+        if (contador!=0) {
+            return true;
+        }
+        return false;
     }
     private void actualizarListaCampos() {
         DefaultListModel Listmodel;

@@ -1,1 +1,1 @@
-100|-1|Name!Cadena!null!1/CityName!Cadena!null!0/
+100|-1|CityID!Cadena!2!1/CityName!Cadena!20!0/
