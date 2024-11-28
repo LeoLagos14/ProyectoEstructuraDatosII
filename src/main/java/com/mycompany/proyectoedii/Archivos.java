@@ -87,8 +87,9 @@ public class Archivos {
     public int getLlavePrimariaIndex() {
         int index = -1;
         for (Campos campo : campos) {
-            if ("1".equals(campo.getLlavePrimaria())) {
+            if (campo.getLlavePrimaria() == 1) {
                 index = campos.indexOf(campo);
+            }else{
             }
         }
         return index;

@@ -36,6 +36,12 @@ public class Registro {
     public void setRNN(int RNN) {
         this.RNN = RNN;
     }
+
+    @Override
+    public String toString() {
+        return "Registro{" + "informacion=" + informacion + ", RNN=" + RNN + '}';
+    }
+    
     
     
     

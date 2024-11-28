@@ -122,6 +122,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableRegistros = new javax.swing.JTable();
+        jd_buscarRegistros = new javax.swing.JDialog();
+        jLabel13 = new javax.swing.JLabel();
+        jb_buscarRegistro = new javax.swing.JButton();
+        js_buscarEntero = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jPArchivos = new javax.swing.JPanel();
@@ -500,6 +504,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pm_Registros.add(jSeparator9);
 
         mi_BuscarRegistro.setText("Buscar Registro");
+        mi_BuscarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_BuscarRegistroActionPerformed(evt);
+            }
+        });
         pm_Registros.add(mi_BuscarRegistro);
         pm_Registros.add(jSeparator10);
 
@@ -621,6 +630,46 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(81, Short.MAX_VALUE))
+        );
+
+        jLabel13.setText("Buscar Entero");
+
+        jb_buscarRegistro.setText("Buscar");
+        jb_buscarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_buscarRegistroActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_buscarRegistrosLayout = new javax.swing.GroupLayout(jd_buscarRegistros.getContentPane());
+        jd_buscarRegistros.getContentPane().setLayout(jd_buscarRegistrosLayout);
+        jd_buscarRegistrosLayout.setHorizontalGroup(
+            jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
+                .addComponent(js_buscarEntero, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
+            .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jb_buscarRegistro)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jd_buscarRegistrosLayout.setVerticalGroup(
+            jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(js_buscarEntero, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(183, Short.MAX_VALUE))
+            .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jb_buscarRegistro)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1053,6 +1102,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 bandera = false;
                 campo.setLlavePrimaria(bandera);
                 archivo_temp.getCampos().add(campo);
+                System.out.println("campos es " + archivo_temp.getCampos());
+                 
 
                 JOptionPane.showMessageDialog(null, "Campo agregado correctamente");
                 jd_crearCampos.setVisible(false);
@@ -1168,10 +1219,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jd_IntroRegistro.setModal(false);
         jd_IntroRegistro.setVisible(true);
         DefaultTableModel tableModel = new DefaultTableModel();
+        String type = "";
 
         String[] nombres = new String[archivo_temp.getCampos().size()];
         for (int i = 0; i < nombres.length; i++) {
             nombres[i] = archivo_temp.getCampos().get(i).getNombre();
+            type = archivo_temp.getCampos().get(i).getTipoString();
+
         }
         tableModel.setColumnIdentifiers(nombres);
         for (int i = 0; i < 5; i++) {
@@ -1180,7 +1234,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jt_Introd.setModel(tableModel);
         jt_Introd.setFillsViewportHeight(true);
-
 
     }//GEN-LAST:event_mi_IntroducirRegstroActionPerformed
 
@@ -1191,6 +1244,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         for (int i = 0; i < jt_Introd.getRowCount(); i++) {
             boolean filaCompleta = true;
             ArrayList nueva = new ArrayList();
+            int valor = 0;
 
             for (int j = 0; j < jt_Introd.getColumnCount(); j++) {
                 if (jt_Introd.getValueAt(i, j) == null || jt_Introd.getValueAt(i, j).toString().isEmpty()) {
@@ -1198,6 +1252,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     contador++;
                     break;
                 } else {
+                    valor = Integer.parseInt((String) jt_Introd.getValueAt(i, j));
+                   // System.out.println("Soy el valor" + valor);
                     nueva.add(jt_Introd.getValueAt(i, j));
                 }
             }
@@ -1205,7 +1261,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             if (filaCompleta) {
                 Registro nuevo = new Registro();
                 nuevo.setInformacion(nueva); // tengo un nuevo registro completo
-                // cargar registro a árbol
+                // Validar que pasa si no se tiene llave primaria
+                int key  = Integer.parseInt((nuevo.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString()));
+                
+                arbolb.B_Insert(key, nuevo);
                 contador2++;
                 insertarModificarPanel(1, nuevo);
             }
@@ -1216,6 +1275,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jd_IntroRegistro.setVisible(false);
             //JOptionPane.showMessageDialog(this, contador2+" Registros agregados con éxito");
         }
+
 
     }//GEN-LAST:event_jb_agregarRegistroActionPerformed
 
@@ -1236,8 +1296,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             tempcampo = ((Campos) archivo_temp.getCampos().get(i)).getNombre();
             Modelo.addColumn(tempcampo);
         }
-        ArrayList<Registro> regs = arbolB.getAllKeys();
-        System.out.println(regs);
+        ArrayList<Registro> regs = arbolb.getAllKeys();
         String[] info = new String[10];
         for (Registro reg : regs) {
             for (int i = 0; i < reg.getInformacion().size(); i++) {
@@ -1253,6 +1312,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jd_ListarRegistro.setVisible(true);
 
     }//GEN-LAST:event_mi_ListarRegistrosActionPerformed
+
+    private void mi_BuscarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_BuscarRegistroActionPerformed
+        // TODO add your handling code here:
+
+        jd_buscarRegistros.pack();
+        jd_buscarRegistros.setLocationRelativeTo(this);
+        jd_buscarRegistros.setModal(false);
+        jd_buscarRegistros.setVisible(true);
+    }//GEN-LAST:event_mi_BuscarRegistroActionPerformed
+
+    private void jb_buscarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_buscarRegistroActionPerformed
+        // TODO add your handling code here:
+        int valorSpinner = (int) js_buscarEntero.getValue();    
+       
+        Registro reg =  arbolb.B_Buscar(valorSpinner);
+        
+        System.out.println("El Registro encontrado es:" + reg);
+        
+        
+        // Para imprimir el arbol
+        for (int i = 0; i < arbolb.getAllKeys().size(); i++) {
+            System.out.println("Impriminedo el registro en " + i);
+            System.out.println(arbolb.getAllKeys().get(i));
+        }
+        
+        
+    }//GEN-LAST:event_jb_buscarRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1298,7 +1384,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (j == 1) {
             try {
                 key = StringANumero(registrotemp.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString());
-                if (arbolB.B_Buscar(key) != null) {
+                if (arbolb.B_Buscar(key) != null) {
                     JOptionPane.showMessageDialog(this, "registro ya existe");
                     //errores += "registro ya existe";
                 }
@@ -1317,7 +1403,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     registrotemp.setRNN(archivo_temp.getCantidadRegistros());
                 }
                 System.out.println("Hi");
-                arbolB.B_Insert(key, registrotemp);
+                //arbolb.B_Insert(key, registrotemp);
 
                 JOptionPane.showMessageDialog(this, "Registro Insertado");
 
@@ -1416,6 +1502,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1457,15 +1544,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_agregarRegistro;
+    private javax.swing.JButton jb_buscarRegistro;
     private javax.swing.JButton jb_crearCampo;
     private javax.swing.JButton jb_modificar;
     private javax.swing.JScrollPane jd_IntroReg;
     private javax.swing.JDialog jd_IntroRegistro;
     private javax.swing.JDialog jd_ListarRegistro;
+    private javax.swing.JDialog jd_buscarRegistros;
     private javax.swing.JDialog jd_crearCampos;
     private javax.swing.JDialog jd_listarCampos;
     private javax.swing.JPanel jp_agregarCampo;
     private javax.swing.JSpinner js_ModLongitud;
+    private javax.swing.JSpinner js_buscarEntero;
     private javax.swing.JTable jt_Introd;
     private javax.swing.JMenuItem mi_BuscarRegistro;
     private javax.swing.JMenuItem mi_CrearCampo;
@@ -1489,7 +1579,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     static Archivos archivo_temp;
     LinkedList<Campos> campos;
-    Arbol arbolB = new Arbol();
+    Arbol arbolb = new Arbol();
 
     private void nuevo_archivo() {
         JFileChooser jfc = new JFileChooser("./");

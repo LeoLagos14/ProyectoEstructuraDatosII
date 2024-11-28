@@ -67,8 +67,8 @@ public class Arbol implements Serializable{
         if (mNodoRaiz == null) {
             mNodoRaiz = new Nodo(); // Inicializa la raíz si está vacía
         }
-        if (!update(mNodoRaiz, key, registro)) {
-            if (rootNode.mNumKeys == (2 * T - 1)) {
+        if (!update(mNodoRaiz, key, registro)) { // Si no puede insertar en el nodo actual
+            if (rootNode.mNumKeys == (2 * T - 1)) { // if Full
                 Nodo newRootNode = new Nodo();
                 mNodoRaiz = newRootNode;
                 newRootNode.isHoja = false;
@@ -78,6 +78,11 @@ public class Arbol implements Serializable{
             } else {
                 B_InsertNonfull(rootNode, key, registro); 
             }
+        }
+        
+          for (int i = 0; i < this.getAllKeys().size(); i++) {
+            System.out.println("Impriminedo el registro en " + i);
+            System.out.println(this.getAllKeys().get(i));
         }
     }
      void B_Split(Nodo parentNode, int i, Nodo node) {
@@ -135,7 +140,7 @@ public class Arbol implements Serializable{
                 i--;
             }
             i++;
-            if (node.mNodosHijos[i].mNumKeys == (2 * T - 1)) {
+            if (node != null && node.mNodosHijos[i].mNumKeys == (2 * T - 1)) {
                 B_Split(node, i, node.mNodosHijos[i]);
                 if (key > node.mKeys[i]) {
                     i++;
