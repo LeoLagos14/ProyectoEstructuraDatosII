@@ -125,7 +125,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jd_buscarRegistros = new javax.swing.JDialog();
         jLabel13 = new javax.swing.JLabel();
         jb_buscarRegistro = new javax.swing.JButton();
-        js_buscarEntero = new javax.swing.JSpinner();
+        tf_buscarRegistro = new javax.swing.JTextField();
+        jl_rFound = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jPArchivos = new javax.swing.JPanel();
@@ -541,6 +543,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ));
         jd_IntroReg.setViewportView(jt_Introd);
 
+        jb_agregarRegistro.setBackground(new java.awt.Color(209, 238, 255));
+        jb_agregarRegistro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jb_agregarRegistro.setText("AGREGAR");
         jb_agregarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -632,8 +636,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        jLabel13.setText("Buscar Entero");
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("BUSCAR REGISTRO");
 
+        jb_buscarRegistro.setBackground(new java.awt.Color(203, 228, 255));
+        jb_buscarRegistro.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jb_buscarRegistro.setText("Buscar");
         jb_buscarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -641,35 +649,50 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jl_rFound.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jl_rFound.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_rFound.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("RESULTADO DE BUSQUEDA");
+
         javax.swing.GroupLayout jd_buscarRegistrosLayout = new javax.swing.GroupLayout(jd_buscarRegistros.getContentPane());
         jd_buscarRegistros.getContentPane().setLayout(jd_buscarRegistrosLayout);
         jd_buscarRegistrosLayout.setHorizontalGroup(
             jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel13)
-                .addGap(18, 18, 18)
-                .addComponent(js_buscarEntero, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
-            .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jb_buscarRegistro)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jl_rFound, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jb_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))))
+                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_buscarRegistrosLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(tf_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
         );
         jd_buscarRegistrosLayout.setVerticalGroup(
             jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(js_buscarEntero, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(183, Short.MAX_VALUE))
-            .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jb_buscarRegistro)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(46, 46, 46)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(tf_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jb_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addGap(18, 18, 18)
+                .addComponent(jl_rFound, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1252,7 +1275,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     contador++;
                     break;
                 } else {
-                    valor = Integer.parseInt((String) jt_Introd.getValueAt(i, j));
+                    //valor = Integer.parseInt((String) jt_Introd.getValueAt(i, j));
                    // System.out.println("Soy el valor" + valor);
                     nueva.add(jt_Introd.getValueAt(i, j));
                 }
@@ -1262,9 +1285,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 Registro nuevo = new Registro();
                 nuevo.setInformacion(nueva); // tengo un nuevo registro completo
                 // Validar que pasa si no se tiene llave primaria
-                int key  = Integer.parseInt((nuevo.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString()));
+                //int key  = Integer.parseInt((nuevo.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString()));
                 
-                arbolb.B_Insert(key, nuevo);
+                //arbolb.B_Insert(key, nuevo);
                 contador2++;
                 insertarModificarPanel(1, nuevo);
             }
@@ -1272,8 +1295,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (contador == jt_Introd.getRowCount()) {
             JOptionPane.showMessageDialog(this, "Ingrese informacion de registros");
         } else {
-            jd_IntroRegistro.setVisible(false);
+            
             //JOptionPane.showMessageDialog(this, contador2+" Registros agregados con éxito");
+             JOptionPane.showMessageDialog(jd_IntroRegistro, "Registros Insertado");
+             jd_IntroRegistro.setVisible(false);
         }
 
 
@@ -1324,19 +1349,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jb_buscarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_buscarRegistroActionPerformed
         // TODO add your handling code here:
-        int valorSpinner = (int) js_buscarEntero.getValue();    
-       
-        Registro reg =  arbolb.B_Buscar(valorSpinner);
-        
-        System.out.println("El Registro encontrado es:" + reg);
-        
-        
-        // Para imprimir el arbol
-        for (int i = 0; i < arbolb.getAllKeys().size(); i++) {
-            System.out.println("Impriminedo el registro en " + i);
-            System.out.println(arbolb.getAllKeys().get(i));
+        String info = tf_buscarRegistro.getText();
+        registroB = new Registro();
+        if (arbolb!=null) {
+            registroB = arbolb.B_Buscar(StringANumero(info));
         }
-        
+        if (tf_buscarRegistro.equals("")) {
+            jl_rFound.setVisible(false);
+            JOptionPane.showMessageDialog(jd_buscarRegistros, "Ingrese la informacion del registro");
+        } else {
+            if (registroB == null) {
+                jl_rFound.setText("No se encontró");
+                jl_rFound.setForeground(Color.GRAY);
+            } else {
+                String text = "";
+                for (Object object : registroB.getInformacion()) {
+                    text += object.toString() + "    ";
+                }
+                jl_rFound.setForeground(Color.BLACK);
+                jl_rFound.setText(text);
+            }
+            tf_buscarRegistro.setText("");
+
+        }
+
         
     }//GEN-LAST:event_jb_buscarRegistroActionPerformed
 
@@ -1403,9 +1439,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     registrotemp.setRNN(archivo_temp.getCantidadRegistros());
                 }
                 System.out.println("Hi");
-                //arbolb.B_Insert(key, registrotemp);
+                arbolb.B_Insert(key, registrotemp);
 
-                JOptionPane.showMessageDialog(this, "Registro Insertado");
+               
 
             } else {
 //                int key2 = StringANumero(registroB.getInfo().get(archivoTemp.getLlavePrimariaIndex()).toString());
@@ -1503,6 +1539,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1553,9 +1590,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_buscarRegistros;
     private javax.swing.JDialog jd_crearCampos;
     private javax.swing.JDialog jd_listarCampos;
+    private javax.swing.JLabel jl_rFound;
     private javax.swing.JPanel jp_agregarCampo;
     private javax.swing.JSpinner js_ModLongitud;
-    private javax.swing.JSpinner js_buscarEntero;
     private javax.swing.JTable jt_Introd;
     private javax.swing.JMenuItem mi_BuscarRegistro;
     private javax.swing.JMenuItem mi_CrearCampo;
@@ -1573,6 +1610,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu pm_modificar;
     private javax.swing.JTable tableRegistros;
     private javax.swing.JTextField tf_NombreCampo;
+    private javax.swing.JTextField tf_buscarRegistro;
     private javax.swing.JTextField tf_nombreCrear;
     private javax.swing.JTextField tf_tamanio;
     // End of variables declaration//GEN-END:variables
@@ -1580,6 +1618,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     static Archivos archivo_temp;
     LinkedList<Campos> campos;
     Arbol arbolb = new Arbol();
+    Registro registroB;
 
     private void nuevo_archivo() {
         JFileChooser jfc = new JFileChooser("./");
