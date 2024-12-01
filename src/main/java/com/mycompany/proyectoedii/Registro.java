@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Registro {
     private ArrayList informacion=new ArrayList();
-    private int RNN;
+    private int RNN,nextResgistroElim;
 
     public Registro(int RNN) {
         this.RNN = RNN;
@@ -36,6 +36,13 @@ public class Registro {
     public void setRNN(int RNN) {
         this.RNN = RNN;
     }
+     public int getNextResgistroElim() {
+        return nextResgistroElim;
+    }
+
+    public void setNextResgistroElim(int nextResgistroElim) {
+        this.nextResgistroElim = nextResgistroElim;
+    }    
 
     @Override
     public String toString() {

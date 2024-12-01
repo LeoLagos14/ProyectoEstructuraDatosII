@@ -44,6 +44,50 @@ public class Nodo implements Serializable{
 
         return -1;
     }
+     void remove(int index, int leftOrRightChild) {
+        if (index >= 0) {
+            int i;
+            for (i = index; i < mNumKeys - 1; i++) {
+                mKeys[i] = mKeys[i + 1];
+                mRegistros[i] = mRegistros[i + 1];
+                if (!isHoja) {
+                    if (i >= index + leftOrRightChild) {
+                        mNodosHijos[i] = mNodosHijos[i + 1];
+                    }
+                }
+            }
+            mKeys[i] = 0;
+            mRegistros[i] = null;
+            if (!isHoja) {
+                if (i >= index + leftOrRightChild) {
+                    mNodosHijos[i] = mNodosHijos[i + 1];
+                }
+                mNodosHijos[i + 1] = null;
+            }
+            mNumKeys--;
+        }
+    }
+void shiftRightByOne() {
+        if (!isHoja) {
+            mNodosHijos[mNumKeys + 1] = mNodosHijos[mNumKeys];
+        }
+        for (int i = mNumKeys - 1; i >= 0; i--) {
+            mKeys[i + 1] = mKeys[i];
+            mRegistros[i + 1] = mRegistros[i];
+            if (!isHoja) {
+                mNodosHijos[i + 1] = mNodosHijos[i];
+            }
+        }
+    }
+
+    int subtreeRootNodeIndex(int key) {
+        for (int i = 0; i < mNumKeys; i++) {
+            if (key < mKeys[i]) {
+                return i;
+            }
+        }
+        return mNumKeys;
+    }
 
     
 }

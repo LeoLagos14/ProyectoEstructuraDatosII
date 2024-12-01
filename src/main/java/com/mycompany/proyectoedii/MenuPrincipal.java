@@ -110,6 +110,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mi_BuscarRegistro = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         mi_EliminarRegistro = new javax.swing.JMenuItem();
+        jSeparator11 = new javax.swing.JPopupMenu.Separator();
         mi_ListarRegistros = new javax.swing.JMenuItem();
         jd_IntroRegistro = new javax.swing.JDialog();
         jLabel11 = new javax.swing.JLabel();
@@ -128,6 +129,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         tf_buscarRegistro = new javax.swing.JTextField();
         jl_rFound = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jd_Modfi = new javax.swing.JButton();
+        jd_modificar = new javax.swing.JDialog();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jt_modi = new javax.swing.JTable();
+        jLabel16 = new javax.swing.JLabel();
+        jb_modRecord = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jPArchivos = new javax.swing.JPanel();
@@ -502,6 +510,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pm_Registros.add(jSeparator8);
 
         mi_ModificarRegsitro.setText("Modificar Registro");
+        mi_ModificarRegsitro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_ModificarRegsitroActionPerformed(evt);
+            }
+        });
         pm_Registros.add(mi_ModificarRegsitro);
         pm_Registros.add(jSeparator9);
 
@@ -516,6 +529,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         mi_EliminarRegistro.setText("Eliminar registro");
         pm_Registros.add(mi_EliminarRegistro);
+        pm_Registros.add(jSeparator11);
 
         mi_ListarRegistros.setText("Listar Registro");
         mi_ListarRegistros.addActionListener(new java.awt.event.ActionListener() {
@@ -657,42 +671,118 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("RESULTADO DE BUSQUEDA");
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("PARA MODIFICAR");
+
+        jd_Modfi.setText("MODIFICAR");
+        jd_Modfi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jd_ModfiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_buscarRegistrosLayout = new javax.swing.GroupLayout(jd_buscarRegistros.getContentPane());
         jd_buscarRegistros.getContentPane().setLayout(jd_buscarRegistrosLayout);
         jd_buscarRegistrosLayout.setHorizontalGroup(
             jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
-                .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jl_rFound, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jb_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))))
-                .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_buscarRegistrosLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(tf_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87))
+            .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(jl_rFound, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                                .addGap(182, 182, 182)
+                                .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jb_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14)))
+                            .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(jd_Modfi, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jd_buscarRegistrosLayout.setVerticalGroup(
             jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(tf_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(jb_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jLabel14)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(jl_rFound, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addGap(18, 18, 18)
+                .addComponent(jd_Modfi, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jt_modi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jt_modi);
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("MODIFICAR REGISTRO");
+
+        jb_modRecord.setText("MODIFICAR");
+        jb_modRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_modRecordActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_modificarLayout = new javax.swing.GroupLayout(jd_modificar.getContentPane());
+        jd_modificar.getContentPane().setLayout(jd_modificarLayout);
+        jd_modificarLayout.setHorizontalGroup(
+            jd_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_modificarLayout.createSequentialGroup()
+                .addContainerGap(93, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
+            .addGroup(jd_modificarLayout.createSequentialGroup()
+                .addGroup(jd_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_modificarLayout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_modificarLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jb_modRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jd_modificarLayout.setVerticalGroup(
+            jd_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_modificarLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addComponent(jb_modRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1340,11 +1430,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void mi_BuscarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_BuscarRegistroActionPerformed
         // TODO add your handling code here:
-
+        jl_rFound.setText("");
+        tf_buscarRegistro.setText("");
+        jd_Modfi.setVisible(false);
+        jLabel15.setVisible(false);
         jd_buscarRegistros.pack();
         jd_buscarRegistros.setLocationRelativeTo(this);
         jd_buscarRegistros.setModal(false);
         jd_buscarRegistros.setVisible(true);
+        
     }//GEN-LAST:event_mi_BuscarRegistroActionPerformed
 
     private void jb_buscarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_buscarRegistroActionPerformed
@@ -1354,8 +1448,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (arbolb!=null) {
             registroB = arbolb.B_Buscar(StringANumero(info));
         }
-        if (tf_buscarRegistro.equals("")) {
-            jl_rFound.setVisible(false);
+        if (tf_buscarRegistro.getText().equalsIgnoreCase("")) {
+            jl_rFound.setVisible(true);
             JOptionPane.showMessageDialog(jd_buscarRegistros, "Ingrese la informacion del registro");
         } else {
             if (registroB == null) {
@@ -1375,6 +1469,79 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_jb_buscarRegistroActionPerformed
+
+    private void mi_ModificarRegsitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_ModificarRegsitroActionPerformed
+        // TODO add your handling code here:
+
+        if (arbolb != null) {
+            jl_rFound.setText("");
+            jLabel15.setVisible(true);
+            jd_Modfi.setVisible(true);
+            jd_buscarRegistros.pack();
+            jd_buscarRegistros.setLocationRelativeTo(this);
+            jd_buscarRegistros.setModal(false);
+            jd_buscarRegistros.setVisible(true);
+             // Obtener y limpiar el texto del label
+            
+
+        } else {
+            JOptionPane.showMessageDialog(jd_buscarRegistros, "No hay registros para modificar");
+        }
+    }//GEN-LAST:event_mi_ModificarRegsitroActionPerformed
+
+    private void jb_modRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modRecordActionPerformed
+        // TODO add your handling code here:
+        
+
+        //arbolb.(key2);
+        registroB.setInformacion(null); 
+
+        ArrayList<Object> nuevaInfo = new ArrayList<>();
+        for (int i = 0; i < jt_modi.getColumnCount(); i++) {
+            nuevaInfo.add(jt_modi.getValueAt(0, i)); 
+        }
+        registroB.setInformacion(nuevaInfo);
+        int key3 = StringANumero(registroB.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString());
+        //insertarModificarPanel(1, registroB);
+
+        jd_Modfi.setVisible(false);
+        jLabel15.setVisible(false);
+        JOptionPane.showMessageDialog(this, "Registro Modificado");
+        jd_modificar.setVisible(false);
+    }//GEN-LAST:event_jb_modRecordActionPerformed
+
+    private void jd_ModfiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jd_ModfiActionPerformed
+        // TODO add your handling code here:
+        String labelText = jl_rFound.getText().trim();
+        if (!labelText.equalsIgnoreCase("No se encontró") && !labelText.isEmpty()) {
+            jd_buscarRegistros.setVisible(false);
+        jd_modificar.pack();
+        jd_modificar.setLocationRelativeTo(this);
+        jd_modificar.setModal(false);
+        jd_modificar.setVisible(true);
+        int key2 = StringANumero(registroB.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString());
+        DefaultTableModel Modelo = new DefaultTableModel();
+        Modelo.setRowCount(0);
+        jt_modi.setModel(Modelo);
+        String tempcampo = "";
+        for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
+            tempcampo = ((Campos) archivo_temp.getCampos().get(i)).getNombre();
+            Modelo.addColumn(tempcampo);
+        }
+        String[] info = new String[archivo_temp.getCampos().size()];
+        for (int i = 0; i < registroB.getInformacion().size(); i++) {
+            info[i] = registroB.getInformacion().get(i).toString();
+        }
+        Modelo.addRow(info);
+        jt_modi.setModel(Modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(jd_modificar, "No se puede modificar");
+        }
+        
+        
+
+    }//GEN-LAST:event_jd_ModfiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1408,7 +1575,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             public void run() {
                 new MenuPrincipal().setVisible(true);
             }
-//////            
         });
     }
 
@@ -1422,6 +1588,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 key = StringANumero(registrotemp.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString());
                 if (arbolb.B_Buscar(key) != null) {
                     JOptionPane.showMessageDialog(this, "registro ya existe");
+                   return;
                     //errores += "registro ya existe";
                 }
             } catch (Exception e) {
@@ -1438,21 +1605,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     archivo_temp.addCantRegs();
                     registrotemp.setRNN(archivo_temp.getCantidadRegistros());
                 }
-                System.out.println("Hi");
                 arbolb.B_Insert(key, registrotemp);
 
                
-
-            } else {
-//                int key2 = StringANumero(registroB.getInfo().get(archivoTemp.getLlavePrimariaIndex()).toString());
-//                registrotemp.setPosicion(registroB.getPosicion());
-//                registrotemp.setNextResgistroElim(registroB.getNextResgistroElim());
-//
-//                arbolB.B_Delete(key2);
-//                arbolB.B_Insert(key, registrotemp);
-//                JOptionPane.showMessageDialog(jPanelPrincipal, "Registro Modificado");
             }
-        }
+
+//            } else {
+//                int key2 = StringANumero(registroB.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString());
+//                key = StringANumero(registrotemp.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString());
+//                registrotemp.setRNN(registroB.getRNN());
+//                registrotemp.setNextResgistroElim(registroB.getNextResgistroElim());
+//                arbolb.B_Delete(key2);
+//                arbolb.B_Insert(key, registrotemp);
+//                JOptionPane.showMessageDialog(this, "Registro Modificado");
+//            }
+        
+    }
     }
 
     private int StringANumero(String palabra) {
@@ -1540,6 +1708,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1569,8 +1739,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
+    private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -1583,17 +1755,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jb_agregarRegistro;
     private javax.swing.JButton jb_buscarRegistro;
     private javax.swing.JButton jb_crearCampo;
+    private javax.swing.JButton jb_modRecord;
     private javax.swing.JButton jb_modificar;
     private javax.swing.JScrollPane jd_IntroReg;
     private javax.swing.JDialog jd_IntroRegistro;
     private javax.swing.JDialog jd_ListarRegistro;
+    private javax.swing.JButton jd_Modfi;
     private javax.swing.JDialog jd_buscarRegistros;
     private javax.swing.JDialog jd_crearCampos;
     private javax.swing.JDialog jd_listarCampos;
+    private javax.swing.JDialog jd_modificar;
     private javax.swing.JLabel jl_rFound;
     private javax.swing.JPanel jp_agregarCampo;
     private javax.swing.JSpinner js_ModLongitud;
     private javax.swing.JTable jt_Introd;
+    private javax.swing.JTable jt_modi;
     private javax.swing.JMenuItem mi_BuscarRegistro;
     private javax.swing.JMenuItem mi_CrearCampo;
     private javax.swing.JMenuItem mi_EliminarRegistro;
@@ -1619,6 +1795,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     LinkedList<Campos> campos;
     Arbol arbolb = new Arbol();
     Registro registroB;
+    int contador=0;
 
     private void nuevo_archivo() {
         JFileChooser jfc = new JFileChooser("./");
