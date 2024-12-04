@@ -20,9 +20,7 @@ import java.util.LinkedList;
 public class Archivos {
     private String path, nombreArchivo;
     private int cantidadRegistros;//
-    public LinkedList<Registro> getAvailist() {
-        return availist;
-    }
+    
     private LinkedList<Registro> availist;
     private LinkedList<Campos>campos;
 
@@ -58,7 +56,15 @@ public class Archivos {
             System.out.println("Índice fuera de rango. No se puede modificar.");
         }
     }
-
+    public void eliminarRegistro(Registro registroElim) {
+            if (registroElim != null) {
+                if (!availist.isEmpty()) {
+                    availist.getLast().setNextResgistroElim(registroElim.getRNN());
+                }
+                registroElim.setNextResgistroElim(-1);
+                availist.add(registroElim);
+            }
+        }
     public String getPath() {
         return path;
     }
@@ -79,6 +85,9 @@ public class Archivos {
 
     public LinkedList<Campos> getCampos() {
         return campos;
+    }
+    public LinkedList getAvailist() {
+        return availist;
     }
 
     public void setCampos(LinkedList<Campos> campos) {
@@ -191,13 +200,13 @@ public class Archivos {
             try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             //leer primera linea
             String primeraLinea = br.readLine();
-
+                System.out.println("hasta q=awdwe");
             String[] partesIniciales = primeraLinea.split("\\|", 3);
 
             if (partesIniciales.length >= 2) {
                 StringBuilder linea = new StringBuilder();
                 linea.append(partesIniciales[0]).append("|").append(partesIniciales[1]).append("|");
-
+                System.out.println("ncsndcjkdsn");
                 // Añade los campos actuales de la lista `campos` en el formato requerido
                 for (Campos campo : campos) {
                     linea.append(campo.getNombre()).append("!");
@@ -205,17 +214,153 @@ public class Archivos {
                     linea.append(campo.getTam()).append("!");
                     linea.append(campo.getLlave()).append("/");
                 }
-
+                System.out.println("Aqui3");
                 // Escribe la línea completa en el archivo
                 try (FileWriter writer = new FileWriter(nombreArchivo)) {
                     writer.write(linea.toString());
                 }
             } else {
+                System.out.println("AQEUI");
             }
         } catch (IOException e) {
             System.out.println("ERROR AL ESCRIBIR EN EL ARCHIVO");
         }
     }
+       public String getRegistroClose(Registro registro) {
+        String registroString = "";
+        int num = 0;
+        Campos campoAux = new Campos();
+        for (Object info : registro.getInformacion()) {
+            registroString += info.toString();
+            campoAux = campos.get(registro.getInformacion().indexOf(info));
+            if (info instanceof String) {
+                System.out.println("1T");
+                num = (int) campoAux.getTam()- info.toString().length();
+            }
+            if (info instanceof Integer) {
+                System.out.println("2T");
+                num = 9 - info.toString().length();
+            }
+            if (info instanceof Double) {
+                System.out.println("3T");
+                num = 11 - info.toString().length();
+            }
+            if (info instanceof Boolean) {
+                System.out.println("4T");
+                num = 5 - info.toString().length();
+            }
+            for (int i = 0; i < num; i++) {
+                registroString += '_';
+            }
+            registroString += '/';
+        }
+        return registroString;
+    }
+public void setAvailistOpen(String posicion) {
 
+        int posEliminado = 0;
+        if (!posicion.equalsIgnoreCase("-1")) {
+            try {
+                posEliminado = Integer.parseInt(posicion);
+                Registro registroTempo = buscarRegistro(posEliminado);
+                    while (posEliminado != -1 ) {
+                        //System.out.println(registroTempo);
+                        availist.add(registroTempo);
+                        posEliminado = registroTempo.getNextResgistroElim();
+                        //System.out.println(registroTempo);
+                        registroTempo = buscarRegistro(posEliminado);
+                    }
+                    System.out.println("ya");
+            } catch (Exception e) {
+                System.out.println("Error al convertir string a entero en setAvailistOpen");
+                e.printStackTrace();
+            }
+        }
+    }
+    public Registro buscarRegistro(int posicion) {
+            //areglar aqui
+            if (posicion > cantidadRegistros || posicion < 1) {
+                return null;
+            }
+
+            Registro registroReturn = new Registro();
+            registroReturn.setRNN(posicion);
+            File archivo = new File(this.path);
+
+            try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+                String linea;
+                int numeroLinea = 0;
+                String dato = "";
+
+                while ((linea = br.readLine()) != null) {
+                    numeroLinea++;
+                    if (numeroLinea == posicion + 1) {
+                        Iterator<Campos> iterator = campos.iterator();
+                        String[] registroToken = linea.split("\\/");
+                        for (String datoAux : registroToken) {
+                            if (!iterator.hasNext()) {
+                                break;
+                            }
+                            Campos campo = iterator.next();
+
+                            dato = "";
+                            for (int j = 0; j < datoAux.length(); j++) {
+                                if (datoAux.charAt(j) == '_') {
+                                    break;
+                                } else {
+                                    dato += datoAux.charAt(j);
+                                }
+                            }
+
+                            if (dato.charAt(0) == '*') {//registro eliminado
+                                int posNextRegistro = 0;
+                                String aux = "";
+                                for (int i = 1; i < dato.length(); i++) {
+                                    if (dato.charAt(i) != '+') {
+                                        aux += dato.charAt(i);
+                                    } else {
+                                        break;
+                                    }
+                                }
+                                try {
+                                    posNextRegistro = Integer.parseInt(aux);
+                                    registroReturn.setNextResgistroElim(posNextRegistro);
+                                    registroReturn.addInformacion(dato);
+                                } catch (Exception e) {
+                                    System.out.println("ERROR EN REGISTRO ELIMINADO en buscarRegistro()");
+                                }
+                            } else {
+                                if (campo.getTipo() instanceof String) {
+                                    registroReturn.addInformacion(dato);
+                                } else if (campo.getTipo() instanceof Integer) {
+                                    try {
+                                        int datoTemp = Integer.parseInt(dato);
+                                        registroReturn.addInformacion(datoTemp);
+                                    } catch (Exception e) {
+                                        System.out.println("ERROR AL CONVERTIR STRING A ENTERO en buscarRegistro()");
+                                    }
+                                } else if (campo.getTipo() instanceof Double) {
+                                    try {
+                                        double datoTemp = Double.parseDouble(dato);
+                                        registroReturn.addInformacion(datoTemp);
+                                    } catch (Exception e) {
+                                        System.out.println("ERROR AL CONVERTIR STRING A DOUBLE en buscarRegistro()");
+                                    }
+                                } else if (campo.getTipo() instanceof Boolean) {
+                                    boolean datoTemp = true;
+                                    if (dato.equalsIgnoreCase("false")) {
+                                        datoTemp = false;
+                                    }
+                                    registroReturn.addInformacion(datoTemp);
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return registroReturn;
+        }
 
 }

@@ -3,14 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyectoedii;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author micha
  */
-public class Registro {
+public class Registro implements Serializable{
     private ArrayList informacion=new ArrayList();
     private int RNN,nextResgistroElim;
 
@@ -43,6 +43,9 @@ public class Registro {
     public void setNextResgistroElim(int nextResgistroElim) {
         this.nextResgistroElim = nextResgistroElim;
     }    
+    public void addInformacion(Object info){
+        this.informacion.add(info);
+    }
 
     @Override
     public String toString() {

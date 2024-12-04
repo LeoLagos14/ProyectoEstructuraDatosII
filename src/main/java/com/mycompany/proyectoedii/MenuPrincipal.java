@@ -32,6 +32,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
+
 /**
  *
  * @author clago
@@ -112,6 +113,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mi_EliminarRegistro = new javax.swing.JMenuItem();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
         mi_ListarRegistros = new javax.swing.JMenuItem();
+        jSeparator12 = new javax.swing.JPopupMenu.Separator();
+        mi_cargarPrueba = new javax.swing.JMenuItem();
         jd_IntroRegistro = new javax.swing.JDialog();
         jLabel11 = new javax.swing.JLabel();
         jd_IntroReg = new javax.swing.JScrollPane();
@@ -136,6 +139,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jt_modi = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
         jb_modRecord = new javax.swing.JButton();
+        jd_borrarRegistros1 = new javax.swing.JDialog();
+        jLabel17 = new javax.swing.JLabel();
+        jb_buscarRegistro1 = new javax.swing.JButton();
+        tf_buscarRegistro1 = new javax.swing.JTextField();
+        jl_rFound1 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jd_borrar = new javax.swing.JButton();
+        jPopupMenuEstandarizacion = new javax.swing.JPopupMenu();
+        jMenuExcel = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
+        jMenuXML = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jPArchivos = new javax.swing.JPanel();
@@ -528,6 +543,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pm_Registros.add(jSeparator10);
 
         mi_EliminarRegistro.setText("Eliminar registro");
+        mi_EliminarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_EliminarRegistroActionPerformed(evt);
+            }
+        });
         pm_Registros.add(mi_EliminarRegistro);
         pm_Registros.add(jSeparator11);
 
@@ -538,6 +558,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         pm_Registros.add(mi_ListarRegistros);
+        pm_Registros.add(jSeparator12);
+
+        mi_cargarPrueba.setText("Cargar Archivos de Prueba");
+        mi_cargarPrueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_cargarPruebaActionPerformed(evt);
+            }
+        });
+        pm_Registros.add(mi_cargarPrueba);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -700,9 +729,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                 .addComponent(jl_rFound, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
                                 .addGap(182, 182, 182)
-                                .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jb_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14)))
+                                .addGroup(jd_buscarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_buscarRegistrosLayout.createSequentialGroup()
+                                        .addComponent(jb_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(9, 9, 9))))
                             .addGroup(jd_buscarRegistrosLayout.createSequentialGroup()
                                 .addGap(150, 150, 150)
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -784,6 +815,103 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jb_modRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
         );
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("BUSCAR REGISTRO");
+
+        jb_buscarRegistro1.setBackground(new java.awt.Color(203, 228, 255));
+        jb_buscarRegistro1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jb_buscarRegistro1.setText("Buscar");
+        jb_buscarRegistro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_buscarRegistro1ActionPerformed(evt);
+            }
+        });
+
+        jl_rFound1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jl_rFound1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_rFound1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("RESULTADO DE BUSQUEDA");
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("PARA BORRAR");
+
+        jd_borrar.setText("BORRAR");
+        jd_borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jd_borrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_borrarRegistros1Layout = new javax.swing.GroupLayout(jd_borrarRegistros1.getContentPane());
+        jd_borrarRegistros1.getContentPane().setLayout(jd_borrarRegistros1Layout);
+        jd_borrarRegistros1Layout.setHorizontalGroup(
+            jd_borrarRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_borrarRegistros1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(tf_buscarRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
+            .addGroup(jd_borrarRegistros1Layout.createSequentialGroup()
+                .addGroup(jd_borrarRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_borrarRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jd_borrarRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_borrarRegistros1Layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(jl_rFound1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_borrarRegistros1Layout.createSequentialGroup()
+                                .addGap(182, 182, 182)
+                                .addGroup(jd_borrarRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jb_buscarRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18)))
+                            .addGroup(jd_borrarRegistros1Layout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jd_borrarRegistros1Layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(jd_borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        jd_borrarRegistros1Layout.setVerticalGroup(
+            jd_borrarRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_borrarRegistros1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(tf_buscarRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jb_buscarRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(jLabel18)
+                .addGap(28, 28, 28)
+                .addComponent(jl_rFound1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jd_borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPopupMenuEstandarizacion.setBackground(new java.awt.Color(0, 102, 102));
+        jPopupMenuEstandarizacion.setBorderPainted(false);
+        jPopupMenuEstandarizacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jMenuExcel.setText("Excel");
+        jMenuExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuExcelActionPerformed(evt);
+            }
+        });
+        jPopupMenuEstandarizacion.add(jMenuExcel);
+        jPopupMenuEstandarizacion.add(jSeparator13);
+
+        jMenuXML.setText("XML");
+        jPopupMenuEstandarizacion.add(jMenuXML);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -956,6 +1084,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLEstandarizacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLEstandarizacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLEstandarizacion.setText("ESTANDARIZACIÓN");
+        jLEstandarizacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLEstandarizacionMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPELayout = new javax.swing.GroupLayout(jPE);
         jPE.setLayout(jPELayout);
@@ -1067,6 +1200,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         jPopupMenuArchivos.show(evt.getComponent(), evt.getX(), evt.getY());
         pm_Campos.setVisible(false);
+        pm_Registros.setVisible(false);
     }//GEN-LAST:event_jLArchivosMouseClicked
 
     private void jMSalirArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMSalirArchivoMouseClicked
@@ -1127,8 +1261,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPopupMenuArchivos.setVisible(false);
         pm_Campos.setVisible(false);
         if (archivo_temp != null) {
-            // guardararchivo();
-            archivo_temp.escribirCamposEnArchivo(archivo_temp.getPath());
+            guardar_archivo();
+            
         } else {
             JOptionPane.showMessageDialog(this, "Debe haber un archivo abierto.");
         }
@@ -1543,6 +1677,111 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jd_ModfiActionPerformed
 
+    private void mi_EliminarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_EliminarRegistroActionPerformed
+        // TODO add your handling code here:
+        if(arbolb != null) {
+            jl_rFound1.setText("");
+            jLabel17.setVisible(true);
+            jd_borrar.setVisible(true);
+            jd_borrarRegistros1.pack();
+            jd_borrarRegistros1.setLocationRelativeTo(this);
+            jd_borrarRegistros1.setModal(false);
+            jd_borrarRegistros1.setVisible(true);
+             // Obtener y limpiar el texto del label
+            
+
+        } else {
+            JOptionPane.showMessageDialog(jd_buscarRegistros, "No hay registros para modificar");
+        }
+    }//GEN-LAST:event_mi_EliminarRegistroActionPerformed
+
+    private void jb_buscarRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_buscarRegistro1ActionPerformed
+        // TODO add your handling code here:
+          String info = tf_buscarRegistro1.getText();
+        registroB = new Registro();
+        if (arbolb!=null) {
+            registroB = arbolb.B_Buscar(StringANumero(info));
+        }
+        if (tf_buscarRegistro1.getText().equalsIgnoreCase("")) {
+            jl_rFound1.setVisible(true);
+            JOptionPane.showMessageDialog(jd_borrarRegistros1, "Ingrese la informacion del registro");
+        } else {
+            if (registroB == null) {
+                jl_rFound1.setText("No se encontró");
+                jl_rFound1.setForeground(Color.GRAY);
+            } else {
+                String text = "";
+                for (Object object : registroB.getInformacion()) {
+                    text += object.toString() + "    ";
+                }
+                jl_rFound1.setForeground(Color.BLACK);
+                jl_rFound1.setText(text);
+            }
+            tf_buscarRegistro1.setText("");
+
+        }
+    }//GEN-LAST:event_jb_buscarRegistro1ActionPerformed
+
+    private void jd_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jd_borrarActionPerformed
+        // TODO add your handling code here:
+        String labelText = jl_rFound1.getText().trim();
+        if (!labelText.equalsIgnoreCase("No se encontró") && !labelText.isEmpty()) {
+            jd_buscarRegistros.setVisible(false);
+            jd_borrarRegistros1.pack();
+            jd_borrarRegistros1.setLocationRelativeTo(this);
+            jd_borrarRegistros1.setModal(false);
+            jd_borrarRegistros1.setVisible(true);
+            int key = StringANumero(registroB.getInformacion().get(archivo_temp.getLlavePrimariaIndex()).toString());
+            archivo_temp.eliminarRegistro(registroB);
+            arbolb.B_Delete(key);
+            jd_borrarRegistros1.setVisible(false);
+                    
+        } else {
+            JOptionPane.showMessageDialog(jd_modificar, "No se puede modificar");
+        }
+    }//GEN-LAST:event_jd_borrarActionPerformed
+
+    private void mi_cargarPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_cargarPruebaActionPerformed
+        // TODO add your handling code here:
+         leerArchivoPrueba();
+            
+    }//GEN-LAST:event_mi_cargarPruebaActionPerformed
+
+    private void jLEstandarizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLEstandarizacionMouseClicked
+        // TODO add your handling code here: 
+        jPopupMenuEstandarizacion.show(evt.getComponent(), evt.getX(), evt.getY());
+        pm_Campos.setVisible(false);
+        pm_Registros.setVisible(false);
+    }//GEN-LAST:event_jLEstandarizacionMouseClicked
+
+    private void jMenuExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExcelActionPerformed
+        // TODO add your handling code here:
+         EstandarizarExportarExcel obj;
+            DefaultTableModel Modelo = new DefaultTableModel();
+            String tempcampo = "";
+            for (int i = 0; i < archivo_temp.getCampos().size(); i++) {
+                tempcampo = ((Campos) archivo_temp.getCampos().get(i)).getNombre();
+                Modelo.addColumn(tempcampo);
+            }
+            ArrayList<Registro> regs = arbolb.getAllKeys();
+            System.out.println(regs);
+            String[] info = new String[10];
+            for (Registro reg : regs) {
+                for (int i = 0; i < reg.getInformacion().size(); i++) {
+                    info[i] = reg.getInformacion().get(i).toString();
+                }
+                Modelo.addRow(info);
+            }
+            jTable1.setModel(Modelo);
+            try {
+                obj = new EstandarizarExportarExcel();
+                obj.exportarExcel(jTable1, archivo_temp);
+            } catch (IOException ex) {
+                System.out.println("Error: " + ex);
+            }
+        
+    }//GEN-LAST:event_jMenuExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1710,6 +1949,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1724,6 +1966,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMGuardarArchivo;
     private javax.swing.JMenuItem jMNuevoArchivo;
     private javax.swing.JMenuItem jMSalirArchivo;
+    private javax.swing.JMenuItem jMenuExcel;
+    private javax.swing.JMenuItem jMenuXML;
     private javax.swing.JPanel jPA;
     private javax.swing.JPanel jPA1;
     private javax.swing.JPanel jPArchivos;
@@ -1734,6 +1978,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenuArchivos;
+    private javax.swing.JPopupMenu jPopupMenuEstandarizacion;
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1743,6 +1988,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
+    private javax.swing.JPopupMenu.Separator jSeparator12;
+    private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -1754,6 +2001,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_agregarRegistro;
     private javax.swing.JButton jb_buscarRegistro;
+    private javax.swing.JButton jb_buscarRegistro1;
     private javax.swing.JButton jb_crearCampo;
     private javax.swing.JButton jb_modRecord;
     private javax.swing.JButton jb_modificar;
@@ -1761,11 +2009,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_IntroRegistro;
     private javax.swing.JDialog jd_ListarRegistro;
     private javax.swing.JButton jd_Modfi;
+    private javax.swing.JButton jd_borrar;
+    private javax.swing.JDialog jd_borrarRegistros1;
     private javax.swing.JDialog jd_buscarRegistros;
     private javax.swing.JDialog jd_crearCampos;
     private javax.swing.JDialog jd_listarCampos;
     private javax.swing.JDialog jd_modificar;
     private javax.swing.JLabel jl_rFound;
+    private javax.swing.JLabel jl_rFound1;
     private javax.swing.JPanel jp_agregarCampo;
     private javax.swing.JSpinner js_ModLongitud;
     private javax.swing.JTable jt_Introd;
@@ -1780,6 +2031,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mi_ModificarRegsitro;
     private javax.swing.JMenuItem mi_borrar;
     private javax.swing.JMenuItem mi_borrarCampo;
+    private javax.swing.JMenuItem mi_cargarPrueba;
     private javax.swing.JMenuItem mi_modificarCampo;
     private javax.swing.JPopupMenu pm_Campos;
     private javax.swing.JPopupMenu pm_Registros;
@@ -1787,6 +2039,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tableRegistros;
     private javax.swing.JTextField tf_NombreCampo;
     private javax.swing.JTextField tf_buscarRegistro;
+    private javax.swing.JTextField tf_buscarRegistro1;
     private javax.swing.JTextField tf_nombreCrear;
     private javax.swing.JTextField tf_tamanio;
     // End of variables declaration//GEN-END:variables
@@ -1794,6 +2047,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     static Archivos archivo_temp;
     LinkedList<Campos> campos;
     Arbol arbolb = new Arbol();
+    Arbol arbolb2 = new Arbol();
     Registro registroB;
     int contador=0;
 
@@ -1853,22 +2107,51 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         System.out.println("ABRIO EL ARCHIVO");
     }
+    
+    private void guardar_archivo() {
 
-    public void guardararchivo() {
         try {
             guarArchivoTXT();
 
         } catch (IOException ex) {
+            System.out.println("no");
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+//                //Write arbol B - archivo binario
+        AdminArbol admArbol = new AdminArbol(archivo_temp.getNombreArchivo() + ".bin");
+        admArbol.escribirArchivo(arbolb);
+        if (arbolb2 != null) {
+            admArbol = new AdminArbol(archivo_temp.getNombreArchivo()+ "2.bin");
+            admArbol.escribirArchivo(arbolb2);
+        }
         JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
+
     }
 
     private void guarArchivoTXT() throws IOException {
         String[] lineas = new String[99999];
-
+//        if (!archivo_temp.getAvailist().isEmpty()) {
+//            Registro registroAux;
+//            for (Object object : archivo_temp.getAvailist()) {
+//                registroAux = (Registro) object;
+//                registroAux.getInformacion().set(0, "*" + registroAux.getNextResgistroElim() + "+");
+//                lineas[((Registro) object).getRNN()] = archivo_temp.getRegistroClose(registroAux);
+//
+//            }
+//        }
+        if (arbolb != null) {
+            for (Registro regs : arbolb.getAllKeys()) {
+                lineas[regs.getRNN()] = archivo_temp.getRegistroClose(regs);
+            }
+        }
         //metadata
         StringBuilder txt = new StringBuilder();
+//        txt.append(archivo_temp.getCantidadRegistros()).append("|");
+//        if (!archivo_temp.getAvailist().isEmpty()) {
+//            txt.append(((Registro) archivo_temp.getAvailist().get(0)).getRNN()).append("|");
+//        } else {
+//            txt.append("-1").append("|");
+//        }
         try {
             txt.append(archivo_temp.getCamposClose());
         } catch (Exception e) {
@@ -1880,7 +2163,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         try {
             FileWriter fw = new FileWriter(archivo_temp.getPath());
             BufferedWriter bw = new BufferedWriter(fw);
-            for (int i = 0; i < archivo_temp.getCampos().size() + 1; i++) {
+            for (int i = 0; i < archivo_temp.getCantidadRegistros() + 1; i++) {
                 System.out.println(lineas[i]);
                 bw.write(lineas[i]);
                 bw.newLine();
@@ -1890,12 +2173,52 @@ public class MenuPrincipal extends javax.swing.JFrame {
             System.out.println("4");
             e.printStackTrace();
         }
-
+        System.out.println("funciona");
     }
 
     private void cerrarArchivo() {
         archivo_temp = null;
 
+    }
+       private void leerArchivoPrueba() {
+        archivo_temp.setCamposOpen("PersonID!Entero!999999!1/PersonName!Cadena!20!0/PersonAge!Entero!999!0/CityID!Cadena!2!0/");
+        archivo_temp.setCantidadRegistros(10000);
+        archivo_temp.setAvailistOpen("-1");
+        File fichero = new File("PersonFile.txt");
+      //  File fichero2 = new File("PersonFile2.txt");
+        insertarArbolPrueba(fichero);
+        //insertarArbolPrueba(fichero2);
+
+    }
+    public void insertarArbolPrueba(File fichero) {
+        Registro registroX;
+        try (FileReader fr = new FileReader(fichero); BufferedReader br = new BufferedReader(fr)) {
+            String linea = br.readLine();
+            linea = br.readLine();
+            while (linea != null) {
+                //System.out.println(cont);
+                String[] info = linea.split("/");
+                //System.out.println(info[1]);
+                registroX = new Registro();
+                for (int i = 0; i < 4; i++) {
+                    String infoAux = "";
+                    for (int j = 0; j < info[i].length(); j++) {
+                        if (info[i].charAt(j) != '_') {
+                            infoAux += info[i].charAt(j);
+                        } else {
+                            break;
+                        }
+                    }
+                    registroX.addInformacion(infoAux);
+                }
+                arbolb.B_Insert(StringANumero(registroX.getInformacion().get(0).toString()), registroX);
+                linea = br.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        
     }
 //public void agregarElementoAvailList(Nodo nuevoNodo){
 //    listaEnlazada.addFirst(nuevoNodo);
